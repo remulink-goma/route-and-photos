@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>アルバムお試し『良き日々を』｜レムリンク</title><style>
+body{font-family:sans-serif;margin:0 auto;padding:10px;color:#222;background:#fff;max-width:680px;overflow-x:hidden}
+h1{font-size:20px;margin:4px 0 2px}
+.note{font-size:13px;color:#555;margin:2px 0 8px}
+#stage{position:relative;left:50%;transform:translateX(-50%);width:100vw;background:#faf7f2 url(jacket.jpg) center/cover no-repeat;border-top:1px solid #e3ddd2;border-bottom:1px solid #e3ddd2;overflow:hidden;touch-action:pan-y;cursor:grab}
+#bgov{position:absolute;inset:0;background:transparent}
+#bigNo{text-shadow:0 0 6px #fff,0 0 6px #fff,0 0 6px #fff}
+#card .cap{text-shadow:0 0 5px #fff,0 0 5px #fff,0 0 5px #fff}
+#bigNo{position:absolute;top:8px;left:12px;font-size:26px;font-weight:bold;color:#e4572e;opacity:.9}
+#card{position:absolute;width:232px;margin-left:-116px;text-align:center;transition:opacity .15s;cursor:pointer}
+#thumbWrap{position:relative;width:224px;height:126px;margin:0 auto;border-radius:6px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.25);background:#000}
+#thumbWrap img{width:100%;height:100%;object-fit:cover;display:block}
+
+#thumbWrap .badge{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:rgba(228,87,46,.92);color:#fff;font-size:20px;line-height:48px;text-align:center;box-shadow:0 1px 6px rgba(0,0,0,.35)}
+#card .cap{margin-top:6px;font-size:13px;line-height:1.35}
+#axis{position:absolute;left:14px;right:14px;height:2px;background:#c9c2b4}
+.stop{position:absolute;width:10px;height:10px;margin-left:-7px;border-radius:50%;background:#5f5138;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.6);cursor:pointer}
+.stop.on{background:#e4572e}
+#ptr{position:absolute;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:#e4572e;border:2px solid #fff;box-shadow:0 0 0 2px #e4572e}
+#guide{position:absolute;width:2px;margin-left:-1px;background:rgba(228,87,46,.35)}
+#vwrap{position:fixed;inset:0;height:100vh;height:100dvh;background:rgba(0,0,0,.95);display:none;align-items:center;justify-content:center;z-index:3000;padding:14px;box-sizing:border-box}
+#vbox{width:min(920px,100%);aspect-ratio:16/9;background:#000}
+#vbox iframe{width:100%;height:100%;display:block}
+#playBtn{display:block;width:100%;margin-top:10px;padding:16px 0;font-size:19px;font-weight:bold;color:#fff;background:#e4572e;border:none;border-radius:8px;cursor:pointer}
+#stage{height:308px}</style></head>
+<body>
+<p class="note">レムリンク『良き日々を』（2022）全15曲。曲順にサムネイルが流れます。</p>
+<div id="stage">
+  <div id="bgov"></div>
+  <div id="bigNo"></div>
+  <div id="card"><div id="thumbWrap"><img id="cimg" alt=""><span class="badge">▶</span></div><div class="cap" id="ccap"></div></div>
+  <div id="guide"></div><div id="axis"></div><div id="ptr"></div>
+</div>
+<button id="playBtn">▶ アルバムを再生（約60秒）</button>
+<p class="note">サムネイルをタッチすると、その曲の動画が15秒再生されます。「ルートと写真」システムは<a href="https://github.com/remulink-goma/route-and-photos" target="_top">GitHubで配布中です</a>。</p>
+<audio id="bgm" src="bg3.mp3" preload="auto"></audio>
+<div id="vwrap"><div id="vbox"></div></div>
+<script>
+const T = [{"n": 1, "t": "祈れ", "v": "EJTLiOHHiWU", "s": 24}, {"n": 2, "t": "暗闇の中の猫", "v": "1GQhroS5Isg", "s": 20}, {"n": 3, "t": "間奏曲８７", "v": "65Y0UWWkM5M", "s": 4}, {"n": 4, "t": "ようこそ迷いの森へ", "v": "0tzxuur1P8Y", "s": 15}, {"n": 5, "t": "間奏曲８３", "v": "AJpkM_wqIO8", "s": 0}, {"n": 6, "t": "ポケットにあるから", "v": "S5BjdQ7EERU", "s": 17}, {"n": 7, "t": "良き日々を", "v": "QZx8H64hbdU", "s": 11}, {"n": 8, "t": "間奏曲８５", "v": "7SFHcL4az-Q", "s": 4}, {"n": 9, "t": "魚が吠える", "v": "vtjWZJV6nQ0", "s": 26}, {"n": 10, "t": "間奏曲８６", "v": "gruX__nbhBQ", "s": 1}, {"n": 11, "t": "流れる雲を眺めて", "v": "QiyGx0dZ5LM", "s": 18}, {"n": 12, "t": "JR須磨駅", "v": "fHdL2ftrKEk", "s": 12}, {"n": 13, "t": "ラーメンうまい", "v": "CiQc4XnAvRU", "s": 15}, {"n": 14, "t": "歌を胸に", "v": "RmaJcvllC4o", "s": 23}, {"n": 15, "t": "パワーなく眠ろう", "v": "4JIbvMrTCoM", "s": 16}];
+const SEG = 15;
+const stage = document.getElementById('stage'), card = document.getElementById('card'),
+      cimg = document.getElementById('cimg'), ccap = document.getElementById('ccap'),
+      ptr = document.getElementById('ptr'), guide = document.getElementById('guide'),
+      axis = document.getElementById('axis'), bigNo = document.getElementById('bigNo'),
+      btn = document.getElementById('playBtn'),
+      vwrap = document.getElementById('vwrap'), vbox = document.getElementById('vbox');
+T.forEach(tk=>{ const i=new Image(); i.src='https://i.ytimg.com/vi/'+tk.v+'/hqdefault.jpg'; });
+const TRAVEL = 19600, PAUSE = 2886;
+const bgm = document.getElementById('bgm');
+let W = 0, stops = [], cur = 0;
+function axisBottom(){ return 44; }
+function layout(){
+  W = stage.clientWidth;
+  const pad = 24, x0 = pad, x1 = W - pad;
+  axis.style.left = x0+'px'; axis.style.right = (W-x1)+'px'; axis.style.bottom = axisBottom()+'px';
+  stops = T.map((tk,i)=>({ tk, x: x0 + (T.length===1?0:i/(T.length-1))*(x1-x0) }));
+  document.querySelectorAll('.stop').forEach(e=>e.remove());
+  stops.forEach((s,i)=>{
+    const d = document.createElement('div'); d.className='stop'+(i===cur?' on':'');
+    d.style.left = s.x+'px'; d.style.bottom = (axisBottom()-4)+'px';
+    d.onclick = (ev)=>{ ev.stopPropagation(); if(playing) stopPlay(false); jumpTo(i); };
+    stage.appendChild(d);
+  });
+  move(stops[cur].x); show(cur);
+}
+function move(x){
+  ptr.style.left = x+'px'; ptr.style.bottom = (axisBottom()-6)+'px';
+  guide.style.left = x+'px'; guide.style.bottom = (axisBottom()+8)+'px';
+  guide.style.height = (stage.clientHeight-axisBottom()-60)+'px';
+  card.style.left = Math.max(120, Math.min(W-120, x))+'px';
+  card.style.bottom = (axisBottom()+26)+'px';
+}
+function show(i){
+  cur = i; const tk = T[i];
+  cimg.src = 'https://i.ytimg.com/vi/'+tk.v+'/hqdefault.jpg';
+  ccap.innerHTML = '<b>'+tk.n+'. '+tk.t+'</b>';
+  bigNo.textContent = tk.n+'曲目';
+  document.querySelectorAll('.stop').forEach((e,j)=>e.classList.toggle('on', j===i));
+}
+function jumpTo(i){ pos = (i/(T.length-1))*TRAVEL; nextStop = i+1; move(stops[i].x); show(i); }
+let playing=false, raf=null, lastTs=0, pos=0, dwellUntil=0, nextStop=1;
+function frame(ts){
+  if(!playing) return;
+  if(!lastTs) lastTs = ts;
+  const dt = ts - lastTs; lastTs = ts;
+  if(ts < dwellUntil){ raf = requestAnimationFrame(frame); return; }
+  pos += dt;
+  const x = 24 + (pos/TRAVEL)*(W-48);
+  move(Math.min(x, W-24));
+  while(nextStop < stops.length && x >= stops[nextStop].x - 1){
+    const idx = nextStop++;
+    card.style.opacity = 0;
+    setTimeout(()=>{ show(idx); card.style.opacity = 1; }, 130);
+    dwellUntil = ts + PAUSE;
+  }
+  if(pos >= TRAVEL){ stopPlay(true); return; }
+  raf = requestAnimationFrame(frame);
+}
+function stopPlay(done){
+  playing = false; if(raf) cancelAnimationFrame(raf); raf=null; lastTs=0;
+  try{ bgm.pause(); }catch(e){}
+  btn.textContent = done ? '▶ もう一度再生' : '▶ アルバムを再生（約60秒）';
+}
+btn.onclick = ()=>{
+  if(playing){ stopPlay(false); return; }
+  if(pos >= TRAVEL){ pos = 0; nextStop = 1; move(stops[0].x); show(0); }
+  playing = true; btn.textContent = '⏸ 一時停止'; lastTs = 0;
+  try{ bgm.volume = 1.0; bgm.currentTime = (pos + cur*PAUSE)/1000; bgm.play(); }catch(e){}
+  raf = requestAnimationFrame(frame);
+};
+/* --- video overlay: no controls, plays the chorus segment, returns by itself --- */
+let ytReady=false, player=null, closeTimer=null;
+const tag = document.createElement('script'); tag.src='https://www.youtube.com/iframe_api';
+document.head.appendChild(tag);
+window.onYouTubeIframeAPIReady = ()=>{ ytReady = true; };
+function openVideo(){
+  if(playing) stopPlay(false);
+  const tk = T[cur];
+  vwrap.style.display = 'flex';
+  clearTimeout(closeTimer);
+  closeTimer = setTimeout(closeVideo, (SEG+4)*1000);
+  const holder = document.createElement('div'); holder.id='vframe';
+  vbox.innerHTML=''; vbox.appendChild(holder);
+  if(ytReady && window.YT && YT.Player){
+    player = new YT.Player('vframe', {
+      videoId: tk.v,
+      playerVars: { autoplay:1, controls:0, rel:0, modestbranding:1, playsinline:1,
+                    start: tk.s, end: tk.s+SEG, disablekb:1 },
+      events: { onStateChange: (e)=>{ if(e.data === YT.PlayerState.ENDED) closeVideo(); },
+                onError: ()=>{ closeVideo(); } }
+    });
+  } else {
+    holder.outerHTML = '<iframe id="vframe" src="https://www.youtube.com/embed/'+tk.v+
+      '?autoplay=1&controls=0&rel=0&modestbranding=1&playsinline=1&start='+tk.s+'&end='+(tk.s+SEG)+
+      '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+    player = null;
+  }
+}
+function closeVideo(){
+  clearTimeout(closeTimer);
+  if(player && player.stopVideo){ try{ player.stopVideo(); player.destroy(); }catch(e){} }
+  player = null; vbox.innerHTML=''; vwrap.style.display='none';
+}
+/* --- drag the pointer: scrub across the stage to choose a track --- */
+let scrubbing = false;
+function scrubTo(clientX){
+  const r = stage.getBoundingClientRect();
+  const x = Math.max(24, Math.min(W-24, clientX - r.left));
+  let idx = 0, best = 1e9;
+  stops.forEach((s,i)=>{ const d = Math.abs(s.x - x); if(d < best){ best = d; idx = i; } });
+  pos = (idx/(T.length-1))*TRAVEL; nextStop = idx + 1;
+  move(stops[idx].x); show(idx);
+}
+stage.addEventListener('pointerdown', (e)=>{
+  if(e.target.closest('#card') || e.target.classList.contains('stop')) return;
+  if(playing) stopPlay(false);
+  scrubbing = true;
+  try{ stage.setPointerCapture(e.pointerId); }catch(err){}
+  scrubTo(e.clientX);
+});
+stage.addEventListener('pointermove', (e)=>{ if(scrubbing) scrubTo(e.clientX); });
+stage.addEventListener('pointerup', ()=>{ scrubbing = false; });
+stage.addEventListener('pointercancel', ()=>{ scrubbing = false; });
+card.addEventListener('click', openVideo);
+vwrap.addEventListener('click', (e)=>{ if(e.target === vwrap) closeVideo(); });
+window.addEventListener('resize', layout);
+layout();
+</script>
+</body></html>
