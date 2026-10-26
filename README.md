@@ -8,17 +8,23 @@
   `timeline/` は年表の上にアルバムジャケットを並べた例です。
 - データの用意（ルートと座標の合わせ込み、写真の配置）は、
   受け取った側の AI が担う前提の設計です。
+- 並ぶのは写真だけとは限りません。`album/` は1枚のアルバムの曲順に
+  動画のサムネイルを並べた例で、タッチするとその曲の動画が再生されます。
+  移動に合わせて、曲をつないだ音を流すこともできます。
 
 操作はこれだけです。
 
 - 再生ボタンを押すと、散歩版はルートが、年表版はポインタが進みます。
 - 写真は再生中に順番にポップアップします。
 - 写真をタッチすると、全画面で大きく表示されます（もう一度タッチで閉じます）。
+- 年表版とアルバム版は、線の上をドラッグしても動かせます。
+  どの位置でも、どれか1つのカードが常に出ています。
 
 ## 実例（実際に動いているもの）
 
 - 散歩版: https://remu.jp/sampo/
 - 年表版: https://remu.jp/albums/
+- アルバム版: https://remu.jp/album-demo/
 - 設置見本（ダミーのトップページ）: https://remulink-goma.github.io/route-and-photos/top-sample.html
 
 ## 使い方
@@ -36,6 +42,10 @@
     正確さより雰囲気で置いてください。
 - `timeline/`： 年表版。データは `albums.json`（年・タイトル・画像ファイル名の列）。
   画像は `jackets/` フォルダにファイル名順で置きます。
+- `album/`： アルバム版。データは HTML の中の曲リスト（曲名・YouTube の動画ID・開始位置の秒）です。
+  サムネイルをタッチすると、その曲の動画が開始位置から15秒だけ再生され、終わると自動で元の画面に戻ります（動画側に操作ボタンはありません）。
+  移動中の音は、曲順に短く切ってつないだ1本の音声ファイル（例では `bg3.mp3`）を別に用意して、再生位置に合わせて流しています。
+  背景にはアルバムのジャケット画像（`jacket.jpg`）を敷いています。
 - 写真の並びはファイル名順／リスト順がそのまま表示順になります。
 - 各例には `index.html`（ページ全体版）と `embed.html`（他のページに「窓」として埋め込む版）があります。
 - `top-sample.html` は窓の設置見本（ダミーのトップページ）です。実際のトップページにどう置くかの参考にしてください。remu.jp のトップページの窓は `embed.html` を iframe で埋め込んだものです。
@@ -61,17 +71,20 @@
 - It started as a way to show walks — a route on a map, with the photos taken on the way (`map/`).
 - The stage does not have to be a map. Any surface with order (coordinates) works: `timeline/` lays album covers along a year axis instead.
 - Preparing the data — converting a picture into map format, aligning the route and the coordinates, placing the photos — is meant to be done by the receiving side's AI.
+- What travels the route does not have to be photos. `album/` lines up video thumbnails along one album's track order; tap one and that track's video plays. A strand of sound, joined from the tracks in order, can also play along with the travel.
 
 That is all the operation there is:
 
 - Press play and the route (or the timeline pointer) runs.
 - Photos pop up in order during playback.
 - Tap a photo to view it fullscreen; tap again to close.
+- The timeline and album versions can also be dragged along the line; exactly one card is shown at every position.
 
 ### Live examples
 
 - Walks: https://remu.jp/sampo/
 - Timeline: https://remu.jp/albums/
+- Album: https://remu.jp/album-demo/
 - Sample placement (dummy top page): https://remulink-goma.github.io/route-and-photos/top-sample.html
 
 ### How to use
@@ -83,6 +96,7 @@ Hand this whole folder to your own AI (an agent that can work with code and file
   - Each photo carries `frac` (its position along the route, 0–1) and `pos` (the lat/lng of the route point at that fraction). Display triggers at the route point nearest to `pos`.
   - A good default for `frac` is an even split by photo order (for 2 photos, about 1/3 and 2/3). Atmosphere over precision.
 - `timeline/`: the timeline version. Data is `albums.json` (a list of year, title, image filename). Images go in `jackets/`, and list order is display order.
+- `album/`: the album version. Data is a track list inside the HTML (title, YouTube video ID, start second per track). Tapping a thumbnail plays that track's video for 15 seconds from its start point, then returns to the route screen on its own (the video itself has no controls). The sound during travel is one pre-joined audio file (`bg3.mp3` in the example), played in step with the position. The album's cover image (`jacket.jpg`) lies under the stage.
 - Photo order is file-name order / list order, and that is the display order.
 - Each example comes in two forms: `index.html` (a full page) and `embed.html` (a compact version for embedding as a "window" in another page).
 - `top-sample.html` is a dummy top page showing how the windows are placed on a real page. The window on the top page of remu.jp is `embed.html` embedded with an iframe.
