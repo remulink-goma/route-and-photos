@@ -32,6 +32,10 @@
 - 写真の並びはファイル名順／リスト順がそのまま表示順になります。
 - 各例には `index.html`（ページ全体版）と `embed.html`（他のページに「窓」として埋め込む版）があります。remu.jp のトップページの窓は `embed.html` を iframe で埋め込んだものです。
 
+```html
+<iframe src="embed.html" style="width:100%;max-width:640px;height:520px;border:1px solid #cccccc" title="ルートと写真"></iframe>
+```
+
 ## 名義とライセンス
 
 作： レムリンク−ゴマ（Remu Link–Goma）
@@ -66,6 +70,10 @@ Hand this whole folder to your own AI (an agent that can work with code and file
 - `timeline/`: the timeline version. Data is `albums.json` (a list of year, title, image filename). Images go in `jackets/`, and list order is display order.
 - Photo order is file-name order / list order, and that is the display order.
 - Each example comes in two forms: `index.html` (a full page) and `embed.html` (a compact version for embedding as a "window" in another page). The window on the top page of remu.jp is `embed.html` embedded with an iframe.
+
+```html
+<iframe src="embed.html" style="width:100%;max-width:640px;height:520px;border:1px solid #cccccc" title="Route and Photos"></iframe>
+```
 
 ### Credit and license
 
