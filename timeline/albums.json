@@ -1,0 +1,158 @@
+[
+ {
+  "date": "2016-12-07",
+  "title": "輝いていてよ 2016 Selection 1",
+  "art": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c6/40/60/c64060d3-bfb4-457e-e45f-ff531e8d98ee/4550710090892_cover.jpg/600x600bb.jpg",
+  "file": "jackets/a01.jpg"
+ },
+ {
+  "date": "2016-12-07",
+  "title": "いつでも君は素敵 2016 Selection 2",
+  "art": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/63/1b/4e/631b4eff-6825-98a2-948d-068ed8019e97/4550710122890_cover.jpg/600x600bb.jpg",
+  "file": "jackets/a02.jpg"
+ },
+ {
+  "date": "2016-12-18",
+  "title": "君は素敵な幻さ 2016 Original 31",
+  "art": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d3/f4/12/d3f412bb-6e9a-72c5-f5a9-07fa41d04c68/4550710986539_cover.jpg/600x600bb.jpg",
+  "file": "jackets/a03.jpg"
+ },
+ {
+  "date": "2017-05-08",
+  "title": "しまわれた絵の具 2016 Original 29",
+  "art": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4c/55/27/4c552799-2dec-f908-690c-e9e5a3a60a5c/4550710152620_cover.jpg/600x600bb.jpg",
+  "file": "jackets/a04.jpg"
+ },
+ {
+  "date": "2017-09-25",
+  "title": "恋する夏 2017 Original 33",
+  "art": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a6/62/e7/a662e75e-8715-64c0-18f7-954687154ee0/4550711501687_cover.jpg/600x600bb.jpg",
+  "file": "jackets/a05.jpg"
+ },
+ {
+  "date": "2017-10-25",
+  "title": "ホタルの夜 2016 Original 30",
+  "art": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c8/95/be/c895be64-03c3-ff4a-157d-dbda58ba5d3e/4550710545521_cover.jpg/600x600bb.jpg",
+  "file": "jackets/a06.jpg"
+ },
+ {
+  "date": "2018-01-04",
+  "title": "チャッチャッチャ 2017 Original 34",
+  "art": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/94/d0/a8/94d0a8aa-e730-095e-91fc-d16dfa6c7630/4550711542499_cover.jpg/600x600bb.jpg",
+  "file": "jackets/a07.jpg"
+ },
+ {
+  "date": "2018-01-04",
+  "title": "にゃんころ先生の瞳 2017 Original 32",
+  "art": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e8/22/53/e82253ac-5204-2c7e-4d74-dc71d76e3ba5/4550711123032_cover.jpg/600x600bb.jpg",
+  "file": "jackets/a08.jpg"
+ },
+ {
+  "date": "2018-07-04",
+  "title": "花をわたす 2018 Original 35",
+  "art": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/8d/bf/05/8dbf0522-36eb-a997-f845-460672f927a7/4550711831463_cover.jpg/600x600bb.jpg",
+  "file": "jackets/a09.jpg"
+ },
+ {
+  "date": "2018-10-23",
+  "title": "大空の上 2018 Selection 3",
+  "art": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f0/bf/77/f0bf77b5-052f-2212-e038-6042337906ed/4550713186615_cover.jpg/600x600bb.jpg",
+  "file": "jackets/a10.jpg"
+ },
+ {
+  "date": "2019-01-08",
+  "title": "シンデレラと恋 2018 Original 36",
+  "art": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/29/0a/14/290a1454-6da5-f5f0-02cc-94fd05200c86/4550713020513_cover.jpg/600x600bb.jpg",
+  "file": "jackets/a11.jpg"
+ },
+ {
+  "date": "2019-05-29",
+  "title": "太陽の踊り 2019 Selection 4",
+  "art": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4d/de/a3/4ddea3db-8ace-d693-ed76-560a4909c832/4550713499319_cover.jpg/600x600bb.jpg",
+  "file": "jackets/a12.jpg"
+ },
+ {
+  "date": "2019-07-14",
+  "title": "生きて死ぬだけ 2019 Original 37",
+  "art": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f2/fd/d1/f2fdd1c8-642f-bfaf-21b9-4eec73801d1f/4550713186653_cover.jpg/600x600bb.jpg",
+  "file": "jackets/a13.jpg"
+ },
+ {
+  "date": "2019-08-07",
+  "title": "君はウエイトレス 2019 Selection 5",
+  "art": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/61/61/8b/61618be1-4c7c-8297-678d-1efd2587681a/4550713499333_cover.jpg/600x600bb.jpg",
+  "file": "jackets/a14.jpg"
+ },
+ {
+  "date": "2019-09-17",
+  "title": "オレンジの花 2019 Selection 6",
+  "art": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/0d/b5/75/0db57520-c459-9cc9-49ba-d57f0f404459/4550752537027_cover.jpg/600x600bb.jpg",
+  "file": "jackets/a15.jpg"
+ },
+ {
+  "date": "2019-12-24",
+  "title": "なんにもない夜 2019 Selection 7",
+  "art": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b6/3f/13/b63f13e5-4746-9c9c-4596-c718a612a6a3/4550753682795_cover.jpg/600x600bb.jpg",
+  "file": "jackets/a16.jpg"
+ },
+ {
+  "date": "2020-01-11",
+  "title": "ああ、空が青い 2019 Original 38",
+  "art": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e5/6e/5e/e56e5ee2-9352-5b0e-0ae3-053fe9186b0f/4550713499296_cover.jpg/600x600bb.jpg",
+  "file": "jackets/a17.jpg"
+ },
+ {
+  "date": "2020-01-30",
+  "title": "メン アンド アルコール 2020 Selection 8",
+  "art": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/7e/b5/79/7eb579fb-8b58-5927-e6bc-c4d0e810a147/4550754590167_cover.jpg/600x600bb.jpg",
+  "file": "jackets/a18.jpg"
+ },
+ {
+  "date": "2020-06-26",
+  "title": "No Reply 2020 Selection 9",
+  "art": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/6d/40/c4/6d40c43a-c376-1f1f-0928-c38788ffcc4e/4550754590303_cover.jpg/600x600bb.jpg",
+  "file": "jackets/a19.jpg"
+ },
+ {
+  "date": "2020-07-01",
+  "title": "朝顔が咲く 2020 Original 39",
+  "art": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ae/d2/e5/aed2e5c3-b134-7139-3e83-8e71720fb343/4550754574310_cover.jpg/600x600bb.jpg",
+  "file": "jackets/a20.jpg"
+ },
+ {
+  "date": "2021-01-08",
+  "title": "誰にもわかる夢 2020 Original 40",
+  "art": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d1/df/6a/d1df6ab6-e018-89c4-029b-6ff4d325baf5/4550754574358_cover.jpg/600x600bb.jpg",
+  "file": "jackets/a21.jpg"
+ },
+ {
+  "date": "2021-04-23",
+  "title": "放り出してる 2021 Selection 10",
+  "art": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/04/db/40/04db40c6-3096-21b7-d281-4c6b859ea2f2/4550754590549_cover.jpg/600x600bb.jpg",
+  "file": "jackets/a22.jpg"
+ },
+ {
+  "date": "2022-07-18",
+  "title": "良き日々を 2022 Original 41 (Ver2)",
+  "art": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ca/96/44/ca964456-c6fd-ea33-aff7-e61cd00eafa8/4550754574419_cover.jpg/600x600bb.jpg",
+  "file": "jackets/a23.jpg"
+ },
+ {
+  "date": "2022-10-01",
+  "title": "NEW BEST レムリンク",
+  "art": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/c1/e7/e5/c1e7e5c3-2ab6-e6a1-e81c-17538fe43159/3617221823225_cover.jpg/600x600bb.jpg",
+  "file": "jackets/a25.jpg"
+ },
+ {
+  "date": "2022-10-28",
+  "title": "BEST2 今、生きてるかい",
+  "art": "LEFTOVERS",
+  "file": "jackets/a24.jpg"
+ },
+ {
+  "date": "2025-04-14",
+  "title": "BEST3 ふつうのうた レムリンク",
+  "art": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/03/5d/fe/035dfe57-67d1-78c1-7647-4ea4bd1dcd98/4550707713889_cover.jpg/600x600bb.jpg",
+  "file": "jackets/a26.jpg"
+ }
+]
