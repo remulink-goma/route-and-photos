@@ -13,6 +13,7 @@
 
 - 散歩版: https://remu.jp/sampo/
 - 年表版: https://remu.jp/albums/
+- 設置見本（ダミーのトップページ）: https://remulink-goma.github.io/route-and-photos/top-sample.html
 
 ## 使い方
 
@@ -59,6 +60,7 @@
 
 - Walks: https://remu.jp/sampo/
 - Timeline: https://remu.jp/albums/
+- Sample placement (dummy top page): https://remulink-goma.github.io/route-and-photos/top-sample.html
 
 ### How to use
 
