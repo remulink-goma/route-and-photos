@@ -77,11 +77,15 @@ playBtn.onclick = ()=>{
 };
 map.on('popupopen', e=>{
   const img = e.popup.getElement().querySelector('img');
-  if(img){ const upd=()=>{ try{e.popup.update();}catch(_){} }; if(img.complete&&img.naturalWidth){ upd(); } else { img.addEventListener('load', upd); } img.title='タッチで全画面'; img.onclick=()=>{
+  if(img){ const upd=()=>{ try{e.popup.update();}catch(_){} }; if(img.complete&&img.naturalWidth){ upd(); } else { img.addEventListener('load', upd); } img.title='タッチで全画面'; }
+});
+document.addEventListener('click', e=>{
+  const t=e.target;
+  if(t && t.tagName==='IMG' && t.closest && t.closest('.leaflet-popup-content')){
     stop();
     const lb=document.getElementById('lightbox'), lbImg=document.getElementById('lb-img');
-    if(lb&&lbImg){ lbImg.src=img.src; lb.style.display='flex'; lb.onclick=()=>{ lb.style.display='none'; }; }
-  }; }
+    if(lb&&lbImg){ lbImg.src=t.src; lb.style.display='flex'; lb.onclick=()=>{ lb.style.display='none'; }; }
+  }
 });
 D.photos.forEach((ph,i)=>{
   markers.push({latlng:[ph.pos[0],ph.pos[1]], html:'<div class="pop"><img src="'+ph.img+'"><p>'+ph.cap+'</p></div>', openPopup:function(){ map.openPopup(this.html, this.latlng, {maxWidth:250}); }});
