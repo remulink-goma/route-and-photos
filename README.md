@@ -44,7 +44,7 @@
   画像は `jackets/` フォルダにファイル名順で置きます。
 - `album/`： アルバム版。データは HTML の中の曲リスト（曲名・YouTube の動画ID・開始位置の秒）です。
   サムネイルをタッチすると、その曲の動画が開始位置から15秒だけ再生され、終わると自動で元の画面に戻ります（動画側に操作ボタンはありません）。
-  移動中の音は、曲順に短く切ってつないだ1本の音声ファイル（例では `bg3.mp3`）を別に用意して、再生位置に合わせて流しています。
+  移動中の音は、曲順に短く切ってつないだ1本の音声ファイル（例では `bg4.mp3`）を別に用意して、再生位置に合わせて流しています。
   背景にはアルバムのジャケット画像（`jacket.jpg`）を敷いています。
 - 写真の並びはファイル名順／リスト順がそのまま表示順になります。
 - 各例には `index.html`（ページ全体版）と `embed.html`（他のページに「窓」として埋め込む版）があります。
@@ -96,7 +96,7 @@ Hand this whole folder to your own AI (an agent that can work with code and file
   - Each photo carries `frac` (its position along the route, 0–1) and `pos` (the lat/lng of the route point at that fraction). Display triggers at the route point nearest to `pos`.
   - A good default for `frac` is an even split by photo order (for 2 photos, about 1/3 and 2/3). Atmosphere over precision.
 - `timeline/`: the timeline version. Data is `albums.json` (a list of year, title, image filename). Images go in `jackets/`, and list order is display order.
-- `album/`: the album version. Data is a track list inside the HTML (title, YouTube video ID, start second per track). Tapping a thumbnail plays that track's video for 15 seconds from its start point, then returns to the route screen on its own (the video itself has no controls). The sound during travel is one pre-joined audio file (`bg3.mp3` in the example), played in step with the position. The album's cover image (`jacket.jpg`) lies under the stage.
+- `album/`: the album version. Data is a track list inside the HTML (title, YouTube video ID, start second per track). Tapping a thumbnail plays that track's video for 15 seconds from its start point, then returns to the route screen on its own (the video itself has no controls). The sound during travel is one pre-joined audio file (`bg4.mp3` in the example), played in step with the position. The album's cover image (`jacket.jpg`) lies under the stage.
 - Photo order is file-name order / list order, and that is the display order.
 - Each example comes in two forms: `index.html` (a full page) and `embed.html` (a compact version for embedding as a "window" in another page).
 - `top-sample.html` is a dummy top page showing how the windows are placed on a real page. The window on the top page of remu.jp is `embed.html` embedded with an iframe.
