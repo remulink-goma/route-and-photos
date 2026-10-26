@@ -11,7 +11,7 @@
 
 操作はこれだけです。
 
-- 再生ボタンを押すと、ルート（年表版はポインタ）が約10秒で進みます。
+- 再生ボタンを押すと、散歩版はルートが、年表版はポインタが進みます。
 - 写真は再生中に順番にポップアップします。
 - 写真をタッチすると、全画面で大きく表示されます（もう一度タッチで閉じます）。
 
@@ -64,7 +64,7 @@
 
 That is all the operation there is:
 
-- Press play and the route (or the timeline pointer) runs in about 10 seconds.
+- Press play and the route (or the timeline pointer) runs.
 - Photos pop up in order during playback.
 - Tap a photo to view it fullscreen; tap again to close.
 
