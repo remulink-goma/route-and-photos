@@ -36,7 +36,7 @@ h1{font-size:20px;margin:4px 0 2px}
 </div>
 <button id="playBtn">▶ アルバムを再生（約60秒）</button>
 <p class="note">サムネイルをタッチすると、その曲の動画が15秒再生されます。「ルートと写真」システムは<a href="https://github.com/remulink-goma/route-and-photos" target="_top">GitHubで配布中です</a>。</p>
-<audio id="bgm" src="bg3.mp3" preload="auto"></audio>
+<audio id="bgm" src="bg4.mp3" preload="auto"></audio>
 <div id="vwrap"><div id="vbox"></div></div>
 <script>
 const T = [{"n": 1, "t": "祈れ", "v": "EJTLiOHHiWU", "s": 24}, {"n": 2, "t": "暗闇の中の猫", "v": "1GQhroS5Isg", "s": 20}, {"n": 3, "t": "間奏曲８７", "v": "65Y0UWWkM5M", "s": 4}, {"n": 4, "t": "ようこそ迷いの森へ", "v": "0tzxuur1P8Y", "s": 15}, {"n": 5, "t": "間奏曲８３", "v": "AJpkM_wqIO8", "s": 0}, {"n": 6, "t": "ポケットにあるから", "v": "S5BjdQ7EERU", "s": 17}, {"n": 7, "t": "良き日々を", "v": "QZx8H64hbdU", "s": 11}, {"n": 8, "t": "間奏曲８５", "v": "7SFHcL4az-Q", "s": 4}, {"n": 9, "t": "魚が吠える", "v": "vtjWZJV6nQ0", "s": 26}, {"n": 10, "t": "間奏曲８６", "v": "gruX__nbhBQ", "s": 1}, {"n": 11, "t": "流れる雲を眺めて", "v": "QiyGx0dZ5LM", "s": 18}, {"n": 12, "t": "JR須磨駅", "v": "fHdL2ftrKEk", "s": 12}, {"n": 13, "t": "ラーメンうまい", "v": "CiQc4XnAvRU", "s": 15}, {"n": 14, "t": "歌を胸に", "v": "RmaJcvllC4o", "s": 23}, {"n": 15, "t": "パワーなく眠ろう", "v": "4JIbvMrTCoM", "s": 16}];
@@ -48,7 +48,7 @@ const stage = document.getElementById('stage'), card = document.getElementById('
       btn = document.getElementById('playBtn'),
       vwrap = document.getElementById('vwrap'), vbox = document.getElementById('vbox');
 T.forEach(tk=>{ const i=new Image(); i.src='https://i.ytimg.com/vi/'+tk.v+'/hqdefault.jpg'; });
-const TRAVEL = 19600, PAUSE = 2886;
+const TRAVEL = 60000;
 const bgm = document.getElementById('bgm');
 let W = 0, stops = [], cur = 0;
 function axisBottom(){ return 44; }
@@ -56,7 +56,7 @@ function layout(){
   W = stage.clientWidth;
   const pad = 24, x0 = pad, x1 = W - pad;
   axis.style.left = x0+'px'; axis.style.right = (W-x1)+'px'; axis.style.bottom = axisBottom()+'px';
-  stops = T.map((tk,i)=>({ tk, x: x0 + (T.length===1?0:i/(T.length-1))*(x1-x0) }));
+  stops = T.map((tk,i)=>({ tk, x: x0 + ((i+0.5)/T.length)*(x1-x0) }));
   document.querySelectorAll('.stop').forEach(e=>e.remove());
   stops.forEach((s,i)=>{
     const d = document.createElement('div'); d.className='stop'+(i===cur?' on':'');
@@ -64,7 +64,7 @@ function layout(){
     d.onclick = (ev)=>{ ev.stopPropagation(); if(playing) stopPlay(false); jumpTo(i); };
     stage.appendChild(d);
   });
-  move(stops[cur].x); show(cur);
+  move(posX()); show(cur);
 }
 function move(x){
   ptr.style.left = x+'px'; ptr.style.bottom = (axisBottom()-6)+'px';
@@ -80,23 +80,19 @@ function show(i){
   bigNo.textContent = tk.n+'曲目';
   document.querySelectorAll('.stop').forEach((e,j)=>e.classList.toggle('on', j===i));
 }
-function jumpTo(i){ pos = (i/(T.length-1))*TRAVEL; nextStop = i+1; move(stops[i].x); show(i); }
-let playing=false, raf=null, lastTs=0, pos=0, dwellUntil=0, nextStop=1;
+function posX(){ return 24 + (pos/TRAVEL)*(W-48); }
+function jumpTo(i){ pos = (i/T.length)*TRAVEL; move(posX()); show(i); }
+let playing=false, raf=null, lastTs=0, pos=0;
 function frame(ts){
   if(!playing) return;
   if(!lastTs) lastTs = ts;
   const dt = ts - lastTs; lastTs = ts;
-  if(ts < dwellUntil){ raf = requestAnimationFrame(frame); return; }
   pos += dt;
-  const x = 24 + (pos/TRAVEL)*(W-48);
-  move(Math.min(x, W-24));
-  while(nextStop < stops.length && x >= stops[nextStop].x - 1){
-    const idx = nextStop++;
-    card.style.opacity = 0;
-    setTimeout(()=>{ show(idx); card.style.opacity = 1; }, 130);
-    dwellUntil = ts + PAUSE;
-  }
-  if(pos >= TRAVEL){ stopPlay(true); return; }
+  const frac = Math.min(pos/TRAVEL, 1);
+  move(24 + frac*(W-48));
+  const idx = Math.min(T.length-1, Math.floor(frac*T.length));
+  if(idx !== cur){ card.style.opacity = 0; setTimeout(()=>{ show(idx); card.style.opacity = 1; }, 130); }
+  if(pos >= TRAVEL){ show(T.length-1); stopPlay(true); return; }
   raf = requestAnimationFrame(frame);
 }
 function stopPlay(done){
@@ -106,9 +102,9 @@ function stopPlay(done){
 }
 btn.onclick = ()=>{
   if(playing){ stopPlay(false); return; }
-  if(pos >= TRAVEL){ pos = 0; nextStop = 1; move(stops[0].x); show(0); }
+  if(pos >= TRAVEL){ pos = 0; move(posX()); show(0); }
   playing = true; btn.textContent = '⏸ 一時停止'; lastTs = 0;
-  try{ bgm.volume = 1.0; bgm.currentTime = (pos + cur*PAUSE)/1000; bgm.play(); }catch(e){}
+  try{ bgm.volume = 1.0; bgm.currentTime = pos/1000; bgm.play(); }catch(e){}
   raf = requestAnimationFrame(frame);
 };
 /* --- video overlay: no controls, plays the chorus segment, returns by itself --- */
@@ -149,10 +145,10 @@ let scrubbing = false;
 function scrubTo(clientX){
   const r = stage.getBoundingClientRect();
   const x = Math.max(24, Math.min(W-24, clientX - r.left));
-  let idx = 0, best = 1e9;
-  stops.forEach((s,i)=>{ const d = Math.abs(s.x - x); if(d < best){ best = d; idx = i; } });
-  pos = (idx/(T.length-1))*TRAVEL; nextStop = idx + 1;
-  move(stops[idx].x); show(idx);
+  const frac = (x-24)/(W-48);
+  const idx = Math.min(T.length-1, Math.max(0, Math.floor(frac*T.length)));
+  pos = frac*TRAVEL;
+  move(x); show(idx);
 }
 stage.addEventListener('pointerdown', (e)=>{
   if(e.target.closest('#card') || e.target.classList.contains('stop')) return;
