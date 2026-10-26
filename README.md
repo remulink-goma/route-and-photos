@@ -9,6 +9,12 @@
 - データの用意（ルートと座標の合わせ込み、写真の配置）は、
   受け取った側の AI が担う前提の設計です。
 
+操作はこれだけです。
+
+- 再生ボタンを押すと、ルート（年表版はポインタ）が約10秒で進みます。
+- 写真は再生中に順番にポップアップします。
+- 写真をタッチすると、全画面で大きく表示されます（もう一度タッチで閉じます）。
+
 ## 実例（実際に動いているもの）
 
 - 散歩版: https://remu.jp/sampo/
@@ -55,6 +61,12 @@
 - It started as a way to show walks — a route on a map, with the photos taken on the way (`map/`).
 - The stage does not have to be a map. Any surface with order (coordinates) works: `timeline/` lays album covers along a year axis instead.
 - Preparing the data — converting a picture into map format, aligning the route and the coordinates, placing the photos — is meant to be done by the receiving side's AI.
+
+That is all the operation there is:
+
+- Press play and the route (or the timeline pointer) runs in about 10 seconds.
+- Photos pop up in order during playback.
+- Tap a photo to view it fullscreen; tap again to close.
 
 ### Live examples
 
