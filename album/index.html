@@ -38,8 +38,8 @@ h1{font-size:20px;margin:4px 0 2px}
   <div id="card"><div id="thumbWrap"><img id="cimg" alt=""><span class="badge">▶</span></div><div class="cap" id="ccap"></div></div>
   <div id="guide"></div><div id="axis"></div><div id="ptr"></div>
 </div>
-<button id="playBtn">▶ アルバムを再生（約60秒）</button>
-<p class="note">※音が出ます。サムネイルをタッチすると、その曲の動画が15秒再生されます。「ルートと写真」システムは<a href="https://github.com/remulink-goma/route-and-photos" target="_top">GitHubで配布中です</a>。</p>
+<button id="playBtn">▶ アルバムを再生（約60秒・音が出ます）</button>
+<p class="note">サムネイルをタッチすると、その曲の動画が15秒再生されます。「ルートと写真」システムは<a href="https://github.com/remulink-goma/route-and-photos" target="_top">GitHubで配布中です</a>。</p>
 <audio id="bgm" src="bg4.mp3" preload="auto"></audio>
 <div id="vwrap"><div id="vbox"></div></div>
 <script>
@@ -102,7 +102,7 @@ function frame(ts){
 function stopPlay(done){
   playing = false; if(raf) cancelAnimationFrame(raf); raf=null; lastTs=0;
   try{ bgm.pause(); }catch(e){}
-  btn.textContent = done ? '▶ もう一度再生' : '▶ アルバムを再生（約60秒）';
+  btn.textContent = done ? '▶ もう一度再生' : '▶ アルバムを再生（約60秒・音が出ます）';
 }
 btn.onclick = ()=>{
   if(playing){ stopPlay(false); return; }
