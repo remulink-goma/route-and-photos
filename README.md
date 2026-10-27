@@ -30,6 +30,8 @@
 
 実際に運用している場所: [https://remu.jp/](https://remu.jp/)（トップページに窓を置き、各ページで使っています）
 
+紹介記事: [Qiita](https://qiita.com/remulink-goma/items/fcf1c94343aa78b56c22) ／ [Zenn](https://zenn.dev/remulink_goma/articles/8bc34230a31d59)
+
 ## 使い方
 
 このフォルダごと、自分の AI（Muse など、コードを扱えるエージェント）に渡して、
@@ -97,6 +99,8 @@ That is all the operation there is:
 - Sample placement (dummy top page): https://remulink-goma.github.io/route-and-photos/top-sample.html
 
 In production at: [https://remu.jp/](https://remu.jp/) (windows on the top page, and each page in use)
+
+Introductory articles (Japanese): [Qiita](https://qiita.com/remulink-goma/items/fcf1c94343aa78b56c22) / [Zenn](https://zenn.dev/remulink_goma/articles/8bc34230a31d59)
 
 ### How to use
 
