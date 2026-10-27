@@ -60,14 +60,14 @@ function layout(){
   W = stage.clientWidth;
   const pad = 24, x0 = pad, x1 = W - pad;
   axis.style.left = x0+'px'; axis.style.right = (W-x1)+'px'; axis.style.bottom = axisBottom()+'px';
-  stops = T.map((tk,i)=>({ tk, x: x0 + ((i+0.5)/T.length)*(x1-x0) }));
   document.querySelectorAll('.stop').forEach(e=>e.remove());
-  stops.forEach((s,i)=>{
-    const d = document.createElement('div'); d.className='stop'+(i===cur?' on':'');
-    d.style.left = s.x+'px'; d.style.bottom = (axisBottom()-4)+'px';
-    d.onclick = (ev)=>{ ev.stopPropagation(); if(playing) stopPlay(false); jumpTo(i); };
+  for(let i=0;i<=T.length;i++){
+    const d = document.createElement('div'); d.className='stop';
+    d.style.left = (x0 + (i/T.length)*(x1-x0))+'px'; d.style.bottom = (axisBottom()-4)+'px';
+    d.onclick = (ev)=>{ ev.stopPropagation(); if(playing) stopPlay(false);
+      if(i<T.length){ jumpTo(i); } else { pos = TRAVEL; move(posX()); show(T.length-1); setDot(T.length); } };
     stage.appendChild(d);
-  });
+  }
   move(posX()); show(cur);
 }
 function move(x){
@@ -83,6 +83,7 @@ function show(i){
   ccap.innerHTML = '<b>'+tk.n+'. '+tk.t+'</b>';
   bigNo.textContent = tk.n+'曲目';
   document.querySelectorAll('.stop').forEach((e,j)=>e.classList.toggle('on', j===i));
+function setDot(k){ document.querySelectorAll('.stop').forEach((e,j)=>e.classList.toggle('on', j===k)); }
 }
 function posX(){ return 24 + (pos/TRAVEL)*(W-48); }
 function jumpTo(i){ pos = (i/T.length)*TRAVEL; move(posX()); show(i); }
@@ -96,7 +97,7 @@ function frame(ts){
   move(24 + frac*(W-48));
   const idx = Math.min(T.length-1, Math.floor(frac*T.length));
   if(idx !== cur){ card.style.opacity = 0; setTimeout(()=>{ show(idx); card.style.opacity = 1; }, 130); }
-  if(pos >= TRAVEL){ show(T.length-1); stopPlay(true); return; }
+  if(pos >= TRAVEL){ show(T.length-1); setDot(T.length); stopPlay(true); return; }
   raf = requestAnimationFrame(frame);
 }
 function stopPlay(done){
