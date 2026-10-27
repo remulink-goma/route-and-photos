@@ -38,13 +38,25 @@ const latlngs = D.route.map(p=>[p[0],p[1]]);
 L.polyline(latlngs,{color:'#ffffff',weight:10,opacity:.95}).addTo(map);
 const line = L.polyline(latlngs,{color:'#e4572e',weight:5,opacity:1}).addTo(map);
 map.fitBounds(line.getBounds().pad(0.08));
+const dynZoom = Math.min(16, map.getZoom()+2);
 const walker = L.circleMarker([D.route[0][0],D.route[0][1]],{radius:9,color:'#fff',weight:3,fillColor:'#e4572e',fillOpacity:1}).addTo(map);
 let followOn = false, panBusy = false, lastFollow = 0;
 function followWalker(ll){
-  if(!followOn || panBusy) return;
-  const now = performance.now(); if(now-lastFollow<250) return;
+  if(!followOn) return;
+  const now = performance.now(); if(now-lastFollow<120) return;
   const size = map.getSize(); if(!size.x || !size.y) return;
   const pt = map.latLngToContainerPoint(ll);
+  if(map.getZoom() >= dynZoom){
+    const dx = pt.x - size.x/2, dy = pt.y - size.y/2;
+    if((Math.abs(dx)>3 || Math.abs(dy)>3) && !panBusy){
+      lastFollow = now; panBusy = true;
+      map.panBy([Math.round(dx), Math.round(dy)], {animate:true, duration:.15});
+      map.once('moveend', ()=>{ panBusy = false; });
+      setTimeout(()=>{ panBusy = false; }, 220);
+    }
+    return;
+  }
+  if(panBusy || now-lastFollow<250) return;
   const ix = size.x*0.15, iy = size.y*0.15;
   let dx = 0, dy = 0;
   if(pt.x<ix) dx = pt.x-ix; else if(pt.x>size.x-ix) dx = pt.x-(size.x-ix);
@@ -98,6 +110,7 @@ playBtn.onclick = ()=>{
   if(scrub.value>=1000) scrub.value=0;
   fromFrac = scrub.value/1000; playStart = performance.now();
   playing = true; followOn = true; playBtn.textContent = '⏸ 一時停止';
+  const wp0 = posAt(scrub.value/1000); panBusy = true; map.flyTo([wp0[0], wp0[1]], dynZoom, {duration:.6}); map.once('moveend', ()=>{ panBusy = false; }); setTimeout(()=>{ panBusy = false; }, 750);
   rafId = requestAnimationFrame(tick);
 };
 const card = document.createElement('div'); card.id='photoCard'; document.getElementById('map').appendChild(card);
