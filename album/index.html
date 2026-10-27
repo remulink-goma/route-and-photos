@@ -6,6 +6,9 @@ body{font-family:sans-serif;margin:0 auto;padding:10px;color:#222;background:#ff
 h1{font-size:20px;margin:4px 0 2px}
 .note{font-size:13px;color:#555;margin:2px 0 8px}
 #stage{position:relative;left:50%;transform:translateX(-50%);width:100vw;background:#faf7f2 url(jacket.jpg) center/cover no-repeat;border-top:1px solid #e3ddd2;border-bottom:1px solid #e3ddd2;overflow:hidden;touch-action:pan-y;cursor:grab}
+#stageTitle{position:absolute;top:10px;left:50%;transform:translateX(-50%);background:rgba(20,16,8,.55);color:#fff;text-align:center;padding:5px 16px 6px;border-radius:12px;pointer-events:none;z-index:5;line-height:1.35;white-space:nowrap}
+#stageTitle .alb{font-size:15px;font-weight:700}
+#stageTitle .sys{display:block;font-size:11px;opacity:.85;letter-spacing:.08em}
 #bgov{position:absolute;inset:0;background:transparent}
 #bigNo{text-shadow:0 0 6px #fff,0 0 6px #fff,0 0 6px #fff}
 #card .cap{text-shadow:0 0 5px #fff,0 0 5px #fff,0 0 5px #fff}
@@ -29,6 +32,7 @@ h1{font-size:20px;margin:4px 0 2px}
 <body>
 <h1>アルバムお試し（ルートと写真システム）</h1><p class="note">レムリンク『良き日々を』（2022）全15曲。曲順にサムネイルが流れます。</p>
 <div id="stage">
+<div id="stageTitle"><span class="alb">レムリンク『良き日々を』（2022）</span><span class="sys">ルートと写真システム</span></div>
   <div id="bgov"></div>
   <div id="bigNo"></div>
   <div id="card"><div id="thumbWrap"><img id="cimg" alt=""><span class="badge">▶</span></div><div class="cap" id="ccap"></div></div>
