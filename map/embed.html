@@ -79,11 +79,9 @@ playBtn.onclick = ()=>{
   rafId = requestAnimationFrame(tick);
 };
 const card = document.createElement('div'); card.id='photoCard'; document.getElementById('map').appendChild(card);
-const spot = L.circleMarker([0,0], {radius:9, color:'#e4572e', weight:3, fillColor:'#e4572e', fillOpacity:.3, interactive:false});
-function hideCard(){ card.style.display='none'; if(map.hasLayer(spot)) map.removeLayer(spot); }
+function hideCard(){ card.style.display='none'; }
 function showCard(mk){
   card.innerHTML = mk.html; card.style.display='block';
-  spot.setLatLng(mk.latlng); if(!map.hasLayer(spot)) spot.addTo(map);
   const img = card.querySelector('img'); if(img) img.title='タッチで全画面';
   const size = map.getSize(), cw = card.offsetWidth, ch = card.offsetHeight, pad = 10;
   const pts = [];
