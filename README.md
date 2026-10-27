@@ -28,7 +28,7 @@
 - 全アルバム紹介: https://remulink-goma.github.io/route-and-photos/albums-intro/
 - 設置見本（ダミーのトップページ）: https://remulink-goma.github.io/route-and-photos/top-sample.html
 
-実際に運用している場所: https://remu.jp/（トップページに窓を置き、各ページで使っています）
+実際に運用している場所: [https://remu.jp/](https://remu.jp/)（トップページに窓を置き、各ページで使っています）
 
 ## 使い方
 
@@ -96,7 +96,7 @@ That is all the operation there is:
 - All-albums intro: https://remulink-goma.github.io/route-and-photos/albums-intro/
 - Sample placement (dummy top page): https://remulink-goma.github.io/route-and-photos/top-sample.html
 
-In production at: https://remu.jp/ (windows on the top page, and each page in use)
+In production at: [https://remu.jp/](https://remu.jp/) (windows on the top page, and each page in use)
 
 ### How to use
 
