@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>全アルバム紹介（ルートと写真システム）｜レムリンク</title><style>
+body{font-family:sans-serif;margin:0 auto;padding:10px;color:#222;background:#fff;max-width:680px;overflow-x:hidden}
+h1{font-size:20px;margin:4px 0 2px}
+.note{font-size:13px;color:#555;margin:2px 0 8px}
+#stage{position:relative;left:50%;transform:translateX(-50%);width:100vw;background:#faf7f2;border-top:1px solid #e3ddd2;border-bottom:1px solid #e3ddd2;overflow:hidden;touch-action:pan-y;cursor:grab}
+#bgimg{position:absolute;inset:-10px;background-size:cover;background-position:center;opacity:1;filter:blur(6px);pointer-events:none}
+#yr{position:absolute;top:8px;left:8px;background:rgba(30,25,18,.74);color:#fff;font-weight:bold;font-size:16px;padding:3px 11px;border-radius:999px;pointer-events:none;z-index:2}
+#card{position:absolute;width:196px;margin-left:-98px;text-align:center;transition:opacity .15s;cursor:pointer}
+#card img{width:172px;height:172px;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,.25);display:block;margin:0 auto;background:#eee}
+#card .cap{margin-top:6px;font-size:13px;line-height:1.35;text-shadow:0 0 5px #fff,0 0 5px #fff}
+#card .cap .trk{color:#555;font-size:12px}
+#axis{position:absolute;left:14px;right:14px;height:2px;background:#c9c2b4}
+.stop{position:absolute;width:10px;height:10px;margin-left:-7px;border-radius:50%;background:#5f5138;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.6);cursor:pointer}
+.stop.on{background:#e4572e}
+#ptr{position:absolute;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:#e4572e;border:2px solid #fff;box-shadow:0 0 0 2px #e4572e}
+#guide{position:absolute;width:2px;margin-left:-1px;background:rgba(228,87,46,.35)}
+#lightbox{position:fixed;inset:0;height:100vh;height:100dvh;background:rgba(0,0,0,.93);display:none;align-items:center;justify-content:center;flex-direction:column;z-index:3000;cursor:pointer;padding:14px;box-sizing:border-box}
+#lightbox img{max-width:min(88vw,70vh);max-height:70vh;object-fit:contain;display:block;border-radius:6px}
+#lightbox .lcap{color:#fff;margin-top:12px;font-size:14px;text-align:center;line-height:1.5}
+#lightbox .lcap .trk{color:#ccc;font-size:13px}
+#lbLink{display:inline-block;margin-top:14px;padding:11px 20px;background:#e4572e;color:#fff;font-size:15px;font-weight:bold;text-decoration:none;border-radius:8px}
+#playBtn{display:block;width:100%;margin-top:10px;padding:16px 0;font-size:19px;font-weight:bold;color:#fff;background:#e4572e;border:none;border-radius:8px;cursor:pointer}
+#stage{height:452px}#card{width:min(300px,74vw);margin-left:0;transform:translateX(-50%)}#card img{width:100%;height:auto;aspect-ratio:1/1}#card .cap{font-size:15px}#lightbox img{max-width:min(94vw,84vh);max-height:84vh}</style></head>
+<body>
+<h1>全アルバム紹介（ルートと写真システム）</h1><p class="note">レムリンクの配信アルバム全26作を、発売順に紹介します。再生すると、アルバムごとに曲が4秒ずつ流れます。</p>
+<div id="stage">
+  <div id="bgimg"></div>
+  <div id="card"><div id="yr"></div><img id="cimg" alt=""><div class="cap" id="ccap"></div></div>
+  <div id="guide"></div><div id="axis"></div><div id="ptr"></div>
+</div>
+<button id="playBtn">▶ 全アルバムを再生（約104秒）</button>
+<p class="note">ジャケットをタッチすると大きく表示され、そのアルバムの曲が15秒流れます。「ルートと写真」システムは<a href="https://github.com/remulink-goma/route-and-photos" target="_top">GitHubで配布中です</a>。</p>
+<audio id="bgm" src="bg.mp3" preload="auto"></audio>
+<audio id="clip" preload="none"></audio>
+<div id="lightbox"><img id="lbImg" alt=""><div class="lcap" id="lbCap"></div><a id="lbLink" href="#" target="_blank" rel="noopener">このアルバムをYouTubeで聴く ▶</a></div>
+<script>
+const A = [{"n": 1, "t": "輝いていてよ 2016 Selection 1", "y": 2016, "trk": "輝いていてよ", "img": "jackets/a01.jpg", "pl": "OLAK5uy_mX8K2Fe4W_S89onFxWePndSi8neEtLKso"}, {"n": 2, "t": "いつでも君は素敵 2016 Selection 2", "y": 2016, "trk": "夏だ！", "img": "jackets/a02.jpg", "pl": "OLAK5uy_lZtmGrgpSiKmIJ46kMmrhJcjFd_hMI_ig"}, {"n": 3, "t": "君は素敵な幻さ 2016 Original 31", "y": 2016, "trk": "今、生きてるかい", "img": "jackets/a03.jpg", "pl": "OLAK5uy_kD-pG_c-LI4gbvMVnetSaH6utYk9UIiMc"}, {"n": 4, "t": "しまわれた絵の具 2016 Original 29", "y": 2017, "trk": "君に溶ける空", "img": "jackets/a04.jpg", "pl": "OLAK5uy_luHO75C6CSekBRAFVkRw0JSUrN_lh4KPE"}, {"n": 5, "t": "恋する夏 2017 Original 33", "y": 2017, "trk": "花咲く夜", "img": "jackets/a05.jpg", "pl": "OLAK5uy_l8frffydmZ6O9biF5N2Ony9M3aQaEdJXE"}, {"n": 6, "t": "ホタルの夜 2016 Original 30", "y": 2017, "trk": "どうってことないさ", "img": "jackets/a06.jpg", "pl": "OLAK5uy_k61vtEjbLb7lkSe0VPYM_si-00kcG2eAY"}, {"n": 7, "t": "チャッチャッチャ 2017 Original 34", "y": 2018, "trk": "前から後ろに", "img": "jackets/a07.jpg", "pl": "OLAK5uy_nmDVE5bhnlZ9aYlI18sNgU6zyLxRal9MA"}, {"n": 8, "t": "にゃんころ先生の瞳 2017 Original 32", "y": 2018, "trk": "それでも人生は続く", "img": "jackets/a08.jpg", "pl": "OLAK5uy_nLsyg7LFACiPtwK9UXaZlyvKUstcg9OYo"}, {"n": 9, "t": "花をわたす 2018 Original 35", "y": 2018, "trk": "花をわたす", "img": "jackets/a09.jpg", "pl": "OLAK5uy_l-PvbqVJ5iFoPKRQVHY1uNBByaZ2ad7Ag"}, {"n": 10, "t": "大空の上 2018 Selection 3", "y": 2018, "trk": "大空の上", "img": "jackets/a10.jpg", "pl": "OLAK5uy_kFytilImoevFivYWvc55tP0McpRKlBjXw"}, {"n": 11, "t": "シンデレラと恋 2018 Original 36", "y": 2019, "trk": "街角に立つ", "img": "jackets/a11.jpg", "pl": "OLAK5uy_mPW1auom5b1CfUYixjl25vY2ikh7OJd18"}, {"n": 12, "t": "太陽の踊り 2019 Selection 4", "y": 2019, "trk": "太陽の踊り", "img": "jackets/a12.jpg", "pl": "OLAK5uy_nlqcCYE6ZwvLPMr9U0HjCjwcdER4j3sNk"}, {"n": 13, "t": "生きて死ぬだけ 2019 Original 37", "y": 2019, "trk": "恋は無傷で", "img": "jackets/a13.jpg", "pl": "OLAK5uy_nM50F9QidiXbeei0TfV9bgHr7YgrIWLuA"}, {"n": 14, "t": "君はウエイトレス 2019 Selection 5", "y": 2019, "trk": "この国のイブ", "img": "jackets/a14.jpg", "pl": "OLAK5uy_ntiXmCEGFD52zfHDpl5zOsh1MhKgpm5T8"}, {"n": 15, "t": "オレンジの花 2019 Selection 6", "y": 2019, "trk": "玉子チャーハン作ろうぜ", "img": "jackets/a15.jpg", "pl": "OLAK5uy_nNTzoNJ0obRCMe5yk3wSh-Y-7CAN1vLpg"}, {"n": 16, "t": "なんにもない夜 2019 Selection 7", "y": 2019, "trk": "戦え!!ビョウインマエダー", "img": "jackets/a16.jpg", "pl": "OLAK5uy_nN3nXV6zkL8hRVZiAtKCWSiz-qX2Xtmbg"}, {"n": 17, "t": "ああ、空が青い 2019 Original 38", "y": 2020, "trk": "聴いてくれる", "img": "jackets/a17.jpg", "pl": "OLAK5uy_nTALGvoRJ7mA_Ip7PmwBHqvrDUC4Dcafk"}, {"n": 18, "t": "メン アンド アルコール 2020 Selection 8", "y": 2020, "trk": "メン アンド アルコール", "img": "jackets/a18.jpg", "pl": "OLAK5uy_kek-TXLG_YiyRrocNEUFKkZu5WP4t_Lh0"}, {"n": 19, "t": "No Reply 2020 Selection 9", "y": 2020, "trk": "ひとりごと", "img": "jackets/a19.jpg", "pl": "OLAK5uy_lt4f0HbphsPdoOWXRqRIgWJhlJqwPR2qo"}, {"n": 20, "t": "朝顔が咲く 2020 Original 39", "y": 2020, "trk": "めぐりめぐる", "img": "jackets/a20.jpg", "pl": "OLAK5uy_kx1JUTvBkQwjzEZ0Uye7rJWSGH0IyQjsw"}, {"n": 21, "t": "誰にもわかる夢 2020 Original 40", "y": 2021, "trk": "光あれ", "img": "jackets/a21.jpg", "pl": "OLAK5uy_nKk89ApHeUYXF0GsL3QXmBEFEcegWH6Jg"}, {"n": 22, "t": "放り出してる 2021 Selection 10", "y": 2021, "trk": "今日も飲みに行く", "img": "jackets/a22.jpg", "pl": "OLAK5uy_lXGwxZAPTUqVfXqzVu4BeAT0YNmPBHxKc"}, {"n": 23, "t": "良き日々を 2022 Original 41 (Ver2)", "y": 2022, "trk": "祈れ", "img": "jackets/a23.jpg", "pl": "OLAK5uy_lBAT0yHQtn9a3SvYxuXpYoDGP4XXsgebE"}, {"n": 24, "t": "NEW BEST レムリンク", "y": 2022, "trk": "生きて、死ぬだけ", "img": "jackets/a25.jpg", "pl": "OLAK5uy_k8pbWX8SnBy1uLonwmpKZHeyQ1QAAM23w"}, {"n": 25, "t": "BEST2 今、生きてるかい", "y": 2022, "trk": "ありきたり", "img": "jackets/a24.jpg", "pl": "OLAK5uy_kqtz8zY7D3D8sJBtTiCwvQzzl2uLz1rnM"}, {"n": 26, "t": "BEST3 ふつうのうた レムリンク", "y": 2025, "trk": "桜も散った春", "img": "jackets/a26.jpg", "pl": "OLAK5uy_k2vqextSkoFZbDpTcx9VnXQCa2KJ5MdiI"}];
+const SLOTMS = 4000;
+const CLIP = 15;
+const stage = document.getElementById('stage'), card = document.getElementById('card'),
+      cimg = document.getElementById('cimg'), ccap = document.getElementById('ccap'),
+      ptr = document.getElementById('ptr'), guide = document.getElementById('guide'),
+      axis = document.getElementById('axis'), yr = document.getElementById('yr'),
+      btn = document.getElementById('playBtn'),
+      bgimg = document.getElementById('bgimg'),
+      lb = document.getElementById('lightbox'), lbImg = document.getElementById('lbImg'),
+      lbCap = document.getElementById('lbCap'), lbLink = document.getElementById('lbLink'),
+      clip = document.getElementById('clip');
+A.forEach(a=>{ const i=new Image(); i.src=a.img; });
+const TRAVEL = SLOTMS * A.length;
+const bgm = document.getElementById('bgm');
+let W = 0, stops = [], cur = 0;
+function axisBottom(){ return 44; }
+function layout(){
+  W = stage.clientWidth;
+  const pad = 24, x0 = pad, x1 = W - pad;
+  axis.style.left = x0+'px'; axis.style.right = (W-x1)+'px'; axis.style.bottom = axisBottom()+'px';
+  stops = A.map((a,i)=>({ a, x: x0 + ((i+0.5)/A.length)*(x1-x0) }));
+  document.querySelectorAll('.stop').forEach(e=>e.remove());
+  stops.forEach((s,i)=>{
+    const d = document.createElement('div'); d.className='stop'+(i===cur?' on':'');
+    d.style.left = s.x+'px'; d.style.bottom = (axisBottom()-4)+'px';
+    d.onclick = (ev)=>{ ev.stopPropagation(); if(playing) stopPlay(false); jumpTo(i); };
+    stage.appendChild(d);
+  });
+  move(posX()); show(cur);
+}
+function move(x){
+  ptr.style.left = x+'px'; ptr.style.bottom = (axisBottom()-6)+'px';
+  guide.style.left = x+'px'; guide.style.bottom = (axisBottom()+8)+'px';
+  guide.style.height = (stage.clientHeight-axisBottom()-60)+'px';
+  const half = card.offsetWidth/2 + 4;
+  card.style.left = Math.max(half, Math.min(W-half, x))+'px';
+  card.style.bottom = (axisBottom()+26)+'px';
+}
+function show(i){
+  cur = i; const a = A[i];
+  if(bgimg) bgimg.style.backgroundImage = 'url("' + a.img + '")';
+  cimg.src = a.img;
+  ccap.innerHTML = '<b>'+a.y+'年</b>　'+a.t+'<br><span class="trk">「'+a.trk+'」</span>';
+  yr.textContent = a.y;
+  document.querySelectorAll('.stop').forEach((e,j)=>e.classList.toggle('on', j===i));
+}
+function posX(){ return 24 + (pos/TRAVEL)*(W-48); }
+function jumpTo(i){ pos = (i/A.length)*TRAVEL; move(posX()); show(i); }
+let playing=false, raf=null, lastTs=0, pos=0;
+function frame(ts){
+  if(!playing) return;
+  if(!lastTs) lastTs = ts;
+  const dt = ts - lastTs; lastTs = ts;
+  pos += dt;
+  const frac = Math.min(pos/TRAVEL, 1);
+  move(24 + frac*(W-48));
+  const idx = Math.min(A.length-1, Math.floor(frac*A.length));
+  if(idx !== cur){ card.style.opacity = 0; setTimeout(()=>{ show(idx); card.style.opacity = 1; }, 130); }
+  if(pos >= TRAVEL){ show(A.length-1); stopPlay(true); return; }
+  raf = requestAnimationFrame(frame);
+}
+function stopPlay(done){
+  playing = false; if(raf) cancelAnimationFrame(raf); raf=null; lastTs=0;
+  try{ bgm.pause(); }catch(e){}
+  btn.textContent = done ? '▶ もう一度再生' : '▶ 全アルバムを再生（約104秒）';
+}
+btn.onclick = ()=>{
+  if(playing){ stopPlay(false); return; }
+  closeLightbox();
+  if(pos >= TRAVEL){ pos = 0; move(posX()); show(0); }
+  playing = true; btn.textContent = '⏸ 一時停止'; lastTs = 0;
+  try{ bgm.volume = 1.0; bgm.currentTime = pos/1000; bgm.play(); }catch(e){}
+  raf = requestAnimationFrame(frame);
+};
+/* --- tap a jacket: enlarge it and play 15s of the album's first track --- */
+let closeTimer = null;
+function openLightbox(){
+  if(playing) stopPlay(false);
+  const a = A[cur];
+  lbImg.src = a.img;
+  lbCap.innerHTML = '<b>'+a.y+'年</b>　'+a.t+'<br><span class="trk">「'+a.trk+'」</span>';
+  lbLink.href = 'https://www.youtube.com/playlist?list=' + a.pl;
+  lb.style.display = 'flex';
+  try{ clip.src = 'clips/c'+String(a.n).padStart(2,'0')+'.mp3'; clip.currentTime = 0; clip.play(); }catch(e){}
+  clearTimeout(closeTimer);
+  closeTimer = setTimeout(closeLightbox, CLIP*1000);
+}
+function closeLightbox(){
+  clearTimeout(closeTimer);
+  try{ clip.pause(); }catch(e){}
+  lb.style.display = 'none';
+}
+clip.addEventListener('ended', closeLightbox);
+card.addEventListener('click', openLightbox);
+lb.addEventListener('click', closeLightbox);
+lbLink.addEventListener('click', (e)=>{ e.stopPropagation(); closeLightbox(); });
+document.addEventListener('visibilitychange', ()=>{ if(document.hidden) closeLightbox(); });
+/* --- drag the pointer: scrub across the stage to choose an album --- */
+let scrubbing = false;
+function scrubTo(clientX){
+  const r = stage.getBoundingClientRect();
+  const x = Math.max(24, Math.min(W-24, clientX - r.left));
+  const frac = (x-24)/(W-48);
+  const idx = Math.min(A.length-1, Math.max(0, Math.floor(frac*A.length)));
+  pos = frac*TRAVEL;
+  move(x); show(idx);
+}
+stage.addEventListener('pointerdown', (e)=>{
+  if(e.target.closest('#card') || e.target.classList.contains('stop')) return;
+  if(playing) stopPlay(false);
+  scrubbing = true;
+  try{ stage.setPointerCapture(e.pointerId); }catch(err){}
+  scrubTo(e.clientX);
+});
+stage.addEventListener('pointermove', (e)=>{ if(scrubbing) scrubTo(e.clientX); });
+stage.addEventListener('pointerup', ()=>{ scrubbing = false; });
+stage.addEventListener('pointercancel', ()=>{ scrubbing = false; });
+window.addEventListener('resize', layout);
+layout();
+</script>
+</body></html>
