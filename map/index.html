@@ -21,6 +21,8 @@ h1{font-size:20px;margin:0 0 4px}
 #lightbox{position:fixed;inset:0;height:100vh;height:100dvh;background:rgba(0,0,0,.93);display:none;align-items:center;justify-content:center;z-index:3000;cursor:pointer;padding:14px;box-sizing:border-box}
 #lightbox img{max-width:100%;max-height:100%;object-fit:contain;display:block}
 .pop img{cursor:pointer}
+#photoCard{position:absolute;z-index:1200;display:none;background:#fff;border-radius:8px;padding:6px;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+#photoCard .pop p{margin:4px 0 0}
 </style></head><body>
 <header><h1>わたしの散歩（ルートと写真システム）</h1>
 <div class="sub">2026年10月25日（日）12:44 出発 ・ 13.54 km ・ 2時間35分 ・ 16,020歩 ・ 写真5枚</div></header>
@@ -45,7 +47,7 @@ function posAt(frac){
 }
 const scrub=document.getElementById('scrub'), readout=document.getElementById('readout');
 function update(){ const f=scrub.value/1000; const p=posAt(f); walker.setLatLng([p[0],p[1]]); readout.textContent=(D.total_m*f/1000).toFixed(1)+' km ・ '+jst(p[2]); }
-scrub.addEventListener('input',()=>{ stop(); lastShown=-1; update(); }); update();
+scrub.addEventListener('input',()=>{ stop(); lastShown=-1; hideCard(); update(); }); update();
 const photoFracs = D.photos.map(ph=>{
   let best=0, bd=1e18;
   D.route.forEach((p,i)=>{ const d=(p[0]-ph.pos[0])**2+(p[1]-ph.pos[1])**2; if(d<bd){bd=d;best=i;} });
@@ -56,7 +58,7 @@ let lastShown = -1;
 function syncHero(){
   const f = scrub.value/1000; let cur = -1;
   photoFracs.forEach((pf,i)=>{ if(f>=pf) cur=i; });
-  if(cur>=0 && cur!==lastShown){ lastShown=cur; if(markers[cur]) markers[cur].openPopup(); }
+  if(cur>=0 && cur!==lastShown){ lastShown=cur; if(markers[cur]) markers[cur].show(); }
 }
 let playing=false, rafId=null, playStart=0, fromFrac=0;
 const DURATION = 10000;
@@ -76,20 +78,41 @@ playBtn.onclick = ()=>{
   playing = true; playBtn.textContent = '⏸ 一時停止';
   rafId = requestAnimationFrame(tick);
 };
-map.on('popupopen', e=>{
-  const img = e.popup.getElement().querySelector('img');
-  if(img){ const upd=()=>{ try{e.popup.update();}catch(_){} }; if(img.complete&&img.naturalWidth){ upd(); } else { img.addEventListener('load', upd); } img.title='タッチで全画面'; }
-});
+const card = document.createElement('div'); card.id='photoCard'; document.getElementById('map').appendChild(card);
+const spot = L.circleMarker([0,0], {radius:9, color:'#e4572e', weight:3, fillColor:'#e4572e', fillOpacity:.3, interactive:false});
+function hideCard(){ card.style.display='none'; if(map.hasLayer(spot)) map.removeLayer(spot); }
+function showCard(mk){
+  card.innerHTML = mk.html; card.style.display='block';
+  spot.setLatLng(mk.latlng); if(!map.hasLayer(spot)) spot.addTo(map);
+  const img = card.querySelector('img'); if(img) img.title='タッチで全画面';
+  const size = map.getSize(), cw = card.offsetWidth, ch = card.offsetHeight, pad = 10;
+  const pts = [];
+  for(let i=0;i<D.route.length;i+=8){ pts.push(map.latLngToContainerPoint([D.route[i][0], D.route[i][1]])); }
+  const anchor = map.latLngToContainerPoint(mk.latlng);
+  const cand = [
+    [pad,pad],[size.x-cw-pad,pad],[pad,size.y-ch-pad],[size.x-cw-pad,size.y-ch-pad],
+    [Math.round((size.x-cw)/2),pad],[Math.round((size.x-cw)/2),size.y-ch-pad],
+    [pad,Math.round((size.y-ch)/2)],[size.x-cw-pad,Math.round((size.y-ch)/2)]
+  ];
+  let best=null, bestScore=1e18;
+  cand.forEach(c=>{
+    let score = 0;
+    pts.forEach(p=>{ if(p.x>=c[0]-6 && p.x<=c[0]+cw+6 && p.y>=c[1]-6 && p.y<=c[1]+ch+6) score++; });
+    if(anchor.x>=c[0]-14 && anchor.x<=c[0]+cw+14 && anchor.y>=c[1]-14 && anchor.y<=c[1]+ch+14) score += 1000;
+    if(score<bestScore){ bestScore=score; best=c; }
+  });
+  card.style.left = best[0]+'px'; card.style.top = best[1]+'px';
+}
 document.addEventListener('click', e=>{
   const t=e.target;
-  if(t && t.tagName==='IMG' && t.closest && t.closest('.leaflet-popup-content')){
+  if(t && t.tagName==='IMG' && t.closest && t.closest('.pop')){
     stop();
     const lb=document.getElementById('lightbox'), lbImg=document.getElementById('lb-img');
     if(lb&&lbImg){ lbImg.src=t.src; lb.style.display='flex'; lb.onclick=()=>{ lb.style.display='none'; }; }
   }
 });
 D.photos.forEach((ph,i)=>{
-  markers.push({latlng:[ph.pos[0],ph.pos[1]], html:'<div class="pop"><img src="'+ph.img+'"><p>'+ph.cap+'</p></div>', openPopup:function(){ map.openPopup(this.html, this.latlng, {maxWidth:250}); }});
+  markers.push({latlng:[ph.pos[0],ph.pos[1]], html:'<div class="pop"><img src="'+ph.img+'"><p>'+ph.cap+'</p></div>', show:function(){ showCard(this); }});
 });
 D.photos.forEach(ph=>{ const pi=new Image(); pi.src=ph.img; });
 </script><div id="lightbox"><img id="lb-img" alt="写真"></div>
