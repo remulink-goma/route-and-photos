@@ -134,7 +134,8 @@ clip.addEventListener('ended', closeLightbox);
 card.addEventListener('click', openLightbox);
 lb.addEventListener('click', closeLightbox);
 lbLink.addEventListener('click', (e)=>{ e.stopPropagation(); closeLightbox(); });
-document.addEventListener('visibilitychange', ()=>{ if(document.hidden) closeLightbox(); });
+document.addEventListener('visibilitychange', ()=>{ if(document.hidden){ if(playing) stopPlay(false); closeLightbox(); } });
+window.addEventListener('pagehide', ()=>{ if(playing) stopPlay(false); closeLightbox(); });
 /* --- drag the pointer: scrub across the stage to choose an album --- */
 let scrubbing = false;
 function scrubTo(clientX){
