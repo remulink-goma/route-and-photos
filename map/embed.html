@@ -21,7 +21,7 @@ h1{font-size:20px;margin:0 0 4px}
 #lightbox{position:fixed;inset:0;height:100vh;height:100dvh;background:rgba(0,0,0,.93);display:none;align-items:center;justify-content:center;z-index:3000;cursor:pointer;padding:14px;box-sizing:border-box}
 #lightbox img{max-width:100%;max-height:100%;object-fit:contain;display:block}
 .pop img{cursor:pointer}
-#photoCard{position:absolute;z-index:1200;display:none;background:#fff;border-radius:8px;padding:6px;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+#photoCard{position:absolute;z-index:1200;display:none;background:#fff;border-radius:8px;padding:6px;box-shadow:0 2px 10px rgba(0,0,0,.35);transition:left .45s ease,top .45s ease}
 #photoCard .pop p{margin:4px 0 0}
 </style></head><body>
 <header><h1>わたしの散歩（ルートと写真システム）</h1>
@@ -79,7 +79,7 @@ playBtn.onclick = ()=>{
   rafId = requestAnimationFrame(tick);
 };
 const card = document.createElement('div'); card.id='photoCard'; document.getElementById('map').appendChild(card);
-function hideCard(){ card.style.display='none'; }
+function hideCard(){ card.style.display='none'; card._pos=null; }
 function showCard(mk){
   card.innerHTML = mk.html; card.style.display='block';
   const img = card.querySelector('img'); if(img) img.title='タッチで全画面';
@@ -92,13 +92,28 @@ function showCard(mk){
     [Math.round((size.x-cw)/2),pad],[Math.round((size.x-cw)/2),size.y-ch-pad],
     [pad,Math.round((size.y-ch)/2)],[size.x-cw-pad,Math.round((size.y-ch)/2)]
   ];
-  let best=null, bestScore=1e18;
-  cand.forEach(c=>{
+  const scored = cand.map(c=>{
     let score = 0;
     pts.forEach(p=>{ if(p.x>=c[0]-6 && p.x<=c[0]+cw+6 && p.y>=c[1]-6 && p.y<=c[1]+ch+6) score++; });
     if(anchor.x>=c[0]-14 && anchor.x<=c[0]+cw+14 && anchor.y>=c[1]-14 && anchor.y<=c[1]+ch+14) score += 1000;
-    if(score<bestScore){ bestScore=score; best=c; }
+    const anchorDist = Math.hypot(c[0]+cw/2-anchor.x, c[1]+ch/2-anchor.y);
+    return {c, score, anchorDist};
   });
+  const minScore = Math.min(...scored.map(s=>s.score));
+  const limit = minScore + Math.max(3, Math.round(minScore*0.35));
+  const pool = scored.filter(s=>s.score<=limit);
+  const prev = card._pos || null;
+  let chosen = null;
+  if(prev){
+    let bestMove = -1;
+    pool.forEach(s=>{
+      const move = Math.hypot(s.c[0]-prev[0], s.c[1]-prev[1]);
+      const value = move - s.score*4 + s.anchorDist*0.05;
+      if(move>40 && value>bestMove){ bestMove=value; chosen=s; }
+    });
+  }
+  if(!chosen){ chosen = pool.slice().sort((a,b)=> a.score-b.score || b.anchorDist-a.anchorDist)[0]; }
+  const best = chosen.c; card._pos = best;
   card.style.left = best[0]+'px'; card.style.top = best[1]+'px';
 }
 document.addEventListener('click', e=>{
