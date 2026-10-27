@@ -25,6 +25,7 @@
 - 散歩版: https://remu.jp/sampo/
 - 年表版: https://remu.jp/albums/
 - アルバム版: https://remu.jp/album-demo/
+- 全アルバム紹介: https://remu.jp/albums-intro/
 - 設置見本（ダミーのトップページ）: https://remulink-goma.github.io/route-and-photos/top-sample.html
 
 ## 使い方
@@ -46,6 +47,11 @@
   サムネイルをタッチすると、その曲の動画が開始位置から15秒だけ再生され、終わると自動で元の画面に戻ります（動画側に操作ボタンはありません）。
   移動中の音は、曲順に短く切ってつないだ1本の音声ファイル（例では `bg4.mp3`）を別に用意して、再生位置に合わせて流しています。
   背景にはアルバムのジャケット画像（`jacket.jpg`）を敷いています。
+- `albums-intro/`： 全アルバム紹介版。年表版の並びに、アルバム版の「移動に合わせた音」を足した例です。
+  データは HTML の中のアルバム列（年・タイトル・1曲目・ジャケット画像・YouTubeプレイリストID）です。
+  移動中の音は、各アルバムの1曲目を4秒ずつつないだ1本の音声ファイル（`bg.mp3`）です。
+  ジャケットをタッチすると、そのアルバムの1曲目が15秒流れます（音声ファイルは `clips/`）。
+  背景には、今表示しているアルバムのジャケットを大きくぼかして敷いています。
 - 写真の並びはファイル名順／リスト順がそのまま表示順になります。
 - 各例には `index.html`（ページ全体版）と `embed.html`（他のページに「窓」として埋め込む版）があります。
 - `top-sample.html` は窓の設置見本（ダミーのトップページ）です。実際のトップページにどう置くかの参考にしてください。remu.jp のトップページの窓は `embed.html` を iframe で埋め込んだものです。
@@ -85,6 +91,7 @@ That is all the operation there is:
 - Walks: https://remu.jp/sampo/
 - Timeline: https://remu.jp/albums/
 - Album: https://remu.jp/album-demo/
+- All-albums intro: https://remu.jp/albums-intro/
 - Sample placement (dummy top page): https://remulink-goma.github.io/route-and-photos/top-sample.html
 
 ### How to use
@@ -97,6 +104,7 @@ Hand this whole folder to your own AI (an agent that can work with code and file
   - A good default for `frac` is an even split by photo order (for 2 photos, about 1/3 and 2/3). Atmosphere over precision.
 - `timeline/`: the timeline version. Data is `albums.json` (a list of year, title, image filename). Images go in `jackets/`, and list order is display order.
 - `album/`: the album version. Data is a track list inside the HTML (title, YouTube video ID, start second per track). Tapping a thumbnail plays that track's video for 15 seconds from its start point, then returns to the route screen on its own (the video itself has no controls). The sound during travel is one pre-joined audio file (`bg4.mp3` in the example), played in step with the position. The album's cover image (`jacket.jpg`) lies under the stage.
+- `albums-intro/`: the all-albums intro version — the timeline's line-up plus the album version's "sound that travels". Data is an album list inside the HTML (year, title, first track, jacket image, YouTube playlist ID). The sound during travel is one pre-joined file (`bg.mp3`) of 4 seconds from each album's first track. Tapping a jacket plays 15 seconds of that album's first track (audio files in `clips/`). The current album's jacket lies large and blurred under the stage as the background.
 - Photo order is file-name order / list order, and that is the display order.
 - Each example comes in two forms: `index.html` (a full page) and `embed.html` (a compact version for embedding as a "window" in another page).
 - `top-sample.html` is a dummy top page showing how the windows are placed on a real page. The window on the top page of remu.jp is `embed.html` embedded with an iframe.
