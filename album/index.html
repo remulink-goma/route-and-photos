@@ -166,6 +166,7 @@ stage.addEventListener('pointerup', ()=>{ scrubbing = false; });
 stage.addEventListener('pointercancel', ()=>{ scrubbing = false; });
 card.addEventListener('click', openVideo);
 vwrap.addEventListener('click', (e)=>{ if(e.target === vwrap) closeVideo(); });
+document.addEventListener('visibilitychange', ()=>{ if(document.hidden && vwrap.style.display !== 'none') closeVideo(); });
 window.addEventListener('resize', layout);
 layout();
 </script>
