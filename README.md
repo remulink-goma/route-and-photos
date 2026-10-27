@@ -22,15 +22,14 @@
 
 ## 実例（実際に動いているもの）
 
-- 散歩版: https://remu.jp/sampo/
-- 年表版: https://remu.jp/albums/
-- アルバム版: https://remu.jp/album-demo/
-- 全アルバム紹介: https://remu.jp/albums-intro/
+- 散歩版: https://remulink-goma.github.io/route-and-photos/map/
+- 年表版: https://remulink-goma.github.io/route-and-photos/timeline/
+- アルバム版: https://remulink-goma.github.io/route-and-photos/album/
+- 全アルバム紹介: https://remulink-goma.github.io/route-and-photos/albums-intro/
 - 設置見本（ダミーのトップページ）: https://remulink-goma.github.io/route-and-photos/top-sample.html
-## 紹介記事
 
-- [地図データを「絵のフォーマット」として使うWebプレイヤー「ルートと写真」を公開しました](https://qiita.com/remulink-goma/items/fcf1c94343aa78b56c22)（Qiita）
-- - [座標のある面なら何でも舞台になる — プレイヤー「ルートと写真」を作って公開した話](https://zenn.dev/remulink_goma/articles/8bc34230a31d59)（Zenn）
+実際に運用している場所: https://remu.jp/（トップページに窓を置き、各ページで使っています）
+
 ## 使い方
 
 このフォルダごと、自分の AI（Muse など、コードを扱えるエージェント）に渡して、
@@ -91,11 +90,13 @@ That is all the operation there is:
 
 ### Live examples
 
-- Walks: https://remu.jp/sampo/
-- Timeline: https://remu.jp/albums/
-- Album: https://remu.jp/album-demo/
-- All-albums intro: https://remu.jp/albums-intro/
+- Walks: https://remulink-goma.github.io/route-and-photos/map/
+- Timeline: https://remulink-goma.github.io/route-and-photos/timeline/
+- Album: https://remulink-goma.github.io/route-and-photos/album/
+- All-albums intro: https://remulink-goma.github.io/route-and-photos/albums-intro/
 - Sample placement (dummy top page): https://remulink-goma.github.io/route-and-photos/top-sample.html
+
+In production at: https://remu.jp/ (windows on the top page, and each page in use)
 
 ### How to use
 
