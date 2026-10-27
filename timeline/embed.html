@@ -14,6 +14,10 @@ h1{font-size:20px;margin:4px 0 2px}
 #axis{position:absolute;left:14px;right:14px;bottom:44px;height:2px;background:#c9c2b4}
 .tick{position:absolute;top:-4px;width:2px;height:10px;background:#a89f8c}
 .tick span{position:absolute;top:12px;left:50%;transform:translateX(-50%);font-size:11px;color:#777}
+.sdot{position:absolute;bottom:41px;width:8px;height:8px;margin-left:-4px;border-radius:50%;background:#5f5138;border:1.5px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.5);pointer-events:none}
+.sdot.on{background:#e4572e}
+#card img{transition:box-shadow .5s}
+#card img.flash{box-shadow:0 0 0 3px #e4572e,0 0 22px rgba(228,87,46,.85)}
 #ptr{position:absolute;bottom:38px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:#e4572e;border:2px solid #fff;box-shadow:0 0 0 2px #e4572e}
 #guide{position:absolute;bottom:52px;width:2px;margin-left:-1px;background:rgba(228,87,46,.35);height:250px}
 #lightbox{position:fixed;inset:0;height:100vh;height:100dvh;background:rgba(0,0,0,.93);display:none;align-items:center;justify-content:center;z-index:3000;cursor:pointer;padding:14px;box-sizing:border-box}
@@ -52,10 +56,12 @@ const t = document.createElement('div'); t.className='tick'; t.dataset.y=y; t.st
 t.innerHTML = '<span>'+y+'</span>'; stage.appendChild(t);
 }
 }
-move(x0); show(A[0]);
+stops.forEach((st,i)=>{ let dx = st.x; if(i>0) dx = Math.max(dx, stops[i-1].dx + 9); st.dx = Math.min(dx, x1);
+    if(!st.dot){ const d = document.createElement('div'); d.className='sdot'; stage.appendChild(d); st.dot = d; } st.dot.style.left = st.dx+'px'; });
+  move(x0); show(A[0]);
 }
 function move(x){ ptr.style.left = x+'px'; guide.style.left = x+'px'; card.style.left = Math.max(102, Math.min(W-102, x))+'px'; }
-function show(a){ cimg.src = a.img; ccap.innerHTML = '<b>'+a.d.slice(0,4)+'年</b>　'+a.t; yb.textContent = a.d.slice(0,4); }
+function show(a){ stops.forEach(st=>{ if(st.dot) st.dot.classList.toggle('on', st.a === a); }); cimg.src = a.img; ccap.innerHTML = '<b>'+a.d.slice(0,4)+'年</b>　'+a.t; yb.textContent = a.d.slice(0,4); }
 let playing=false, raf=null, lastTs=0, pos=0, dwellUntil=0, nextStop=0;
 // pos: position in "travel ms" 0..TRAVEL; dwell handled by wall-clock deadline
 function frame(ts){
@@ -69,7 +75,7 @@ move(Math.min(x, W-24));
 while(nextStop < stops.length && x >= stops[nextStop].x - 1){
 const s = stops[nextStop++];
 card.style.opacity = 0;
-setTimeout(()=>{ show(s.a); card.style.opacity = 1; }, 130);
+setTimeout(()=>{ show(s.a); card.style.opacity = 1; cimg.classList.add('flash'); setTimeout(()=>cimg.classList.remove('flash'), 450); }, 130);
 dwellUntil = ts + PAUSE;
 }
 if(pos >= TRAVEL){ stop(true); return; }
