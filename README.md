@@ -27,7 +27,10 @@
 - アルバム版: https://remu.jp/album-demo/
 - 全アルバム紹介: https://remu.jp/albums-intro/
 - 設置見本（ダミーのトップページ）: https://remulink-goma.github.io/route-and-photos/top-sample.html
+## 紹介記事
 
+- [地図データを「絵のフォーマット」として使うWebプレイヤー「ルートと写真」を公開しました](https://qiita.com/remulink-goma/items/fcf1c94343aa78b56c22)（Qiita）
+- - [座標のある面なら何でも舞台になる — プレイヤー「ルートと写真」を作って公開した話](https://zenn.dev/remulink_goma/articles/8bc34230a31d59)（Zenn）
 ## 使い方
 
 このフォルダごと、自分の AI（Muse など、コードを扱えるエージェント）に渡して、
