@@ -31,6 +31,7 @@
 実際に運用している場所: [https://remu.jp/](https://remu.jp/)（トップページに窓を置き、各ページで使っています）
 
 紹介記事: [Qiita](https://qiita.com/remulink-goma/items/fcf1c94343aa78b56c22) ／ [Zenn](https://zenn.dev/remulink_goma/articles/8bc34230a31d59)
+作った側の体験談（宣伝ノート）: [「ルートと写真」という仕組みを作りました](https://note.com/remulink_goma/n/n2d51f09fe441)
 
 ## 使い方
 
@@ -79,6 +80,7 @@
 
 **Route and Photos** is a tiny web player that treats map data as a picture format: a route (a line) travels across it, and photos appear in order along the way.
 
+
 - It started as a way to show walks — a route on a map, with the photos taken on the way (`map/`).
 - The stage does not have to be a map. Any surface with order (coordinates) works: `timeline/` lays album covers along a year axis instead.
 - Preparing the data — converting a picture into map format, aligning the route and the coordinates, placing the photos — is meant to be done by the receiving side's AI.
@@ -102,6 +104,7 @@ That is all the operation there is:
 In production at: [https://remu.jp/](https://remu.jp/) (windows on the top page, and each page in use)
 
 Introductory articles (Japanese): [Qiita](https://qiita.com/remulink-goma/items/fcf1c94343aa78b56c22) / [Zenn](https://zenn.dev/remulink_goma/articles/8bc34230a31d59)
+Making-of story on the promo note (Japanese): [「ルートと写真」という仕組みを作りました](https://note.com/remulink_goma/n/n2d51f09fe441)
 
 ### How to use
 
