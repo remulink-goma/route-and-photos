@@ -130,3 +130,11 @@ MIT License — see `LICENSE`. Use it, change it, share it freely.
 The MIT License covers the system itself (code and templates). The audio clips, jacket images, and photos in the sample pages are previews only; their copyrights remain with Remu Link and they are not covered by the MIT License (see `NOTICE`).
 
 The map version uses Leaflet (BSD 2-Clause); please keep its attribution.
+
+## お知らせ
+以前の版にあった、再生回数を記録する仕組み（hit.gif の読み込み）は削除しました。
+
+## Note
+The play-count recording mechanism (loading hit.gif) that was present in earlier versions has been removed.
+
+
