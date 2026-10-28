@@ -70,6 +70,7 @@
 設計と判断はレムリンク、実装は AI のゴマ（Muse）が担いました。
 
 ライセンスは MIT です（`LICENSE` を参照）。自由に使って、直して、配ってください。
+なお、MIT の対象はシステム本体（プログラムとテンプレート）です。見本ページに収録されている音源・ジャケット画像・写真は、試聴と表示のための見本として置いているもので、著作権はレムリンクにあり、MIT には含まれません（`NOTICE` を参照）。
 地図版で使っている Leaflet は BSD 2-Clause ライセンスで、その表示は残してください。
 
 ---
@@ -126,5 +127,6 @@ Hand this whole folder to your own AI (an agent that can work with code and file
 By Remu Link–Goma. Design and decisions by Remu Link; implementation by his AI, Goma (Muse).
 
 MIT License — see `LICENSE`. Use it, change it, share it freely.
+The MIT License covers the system itself (code and templates). The audio clips, jacket images, and photos in the sample pages are previews only; their copyrights remain with Remu Link and they are not covered by the MIT License (see `NOTICE`).
 
 The map version uses Leaflet (BSD 2-Clause); please keep its attribution.
