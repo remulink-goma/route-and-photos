@@ -1,0 +1,13 @@
+NOTICE
+
+Third-party components:
+- Leaflet (used in the walk/map version) is distributed under the BSD 2-Clause
+  License. Its copyright notice must be retained as provided with the library.
+
+Sample content:
+The audio clips, jacket images, and photographs included in the sample pages
+(for example album/bg4.mp3, albums-intro/bg.mp3, albums-intro/clips/, and the
+photos in map/) are provided as previews for demonstration only. Their
+copyrights remain with Remu Link and the respective rights holders, and they
+are NOT covered by the MIT License. Please replace them with your own content
+when you use this system.
