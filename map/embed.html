@@ -164,15 +164,4 @@ D.photos.forEach((ph,i)=>{
 D.photos.forEach(ph=>{ const pi=new Image(); pi.src=ph.img; });
 </script><div id="lightbox"><img id="lb-img" alt="写真"></div>
 
-<script>
-var _played=false;
-document.addEventListener('click',function(e){
-  if(_played) return;
-  var b=document.getElementById('play');
-  if(b && (e.target===b || b.contains(e.target))){
-    _played=true;
-    try{ fetch('hit.gif?t='+Date.now(), {mode:'no-cors'}); }catch(_){}
-  }
-}, true);
-</script>
 </body></html>
