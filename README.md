@@ -30,6 +30,7 @@
 
 実際に運用している場所: [https://remu.jp/](https://remu.jp/)（トップページに窓を置き、各ページで使っています）
 
+![わたしの散歩（ルートと写真システム）](images/map.jpg)
 紹介記事: [Qiita](https://qiita.com/remulink-goma/items/fcf1c94343aa78b56c22) ／ [Zenn](https://zenn.dev/remulink_goma/articles/8bc34230a31d59)
 作った側の体験談（宣伝ノート）: [「ルートと写真」という仕組みを作りました](https://note.com/remulink_goma/n/n2d51f09fe441)
 
@@ -102,6 +103,7 @@ That is all the operation there is:
 
 In production at: [https://remu.jp/](https://remu.jp/) (windows on the top page, and each page in use)
 
+![A walk (Route and Photos system)](images/map.jpg)
 Introductory articles (Japanese): [Qiita](https://qiita.com/remulink-goma/items/fcf1c94343aa78b56c22) / [Zenn](https://zenn.dev/remulink_goma/articles/8bc34230a31d59)
 Making-of story on the promo note (Japanese): [「ルートと写真」という仕組みを作りました](https://note.com/remulink_goma/n/n2d51f09fe441)
 
