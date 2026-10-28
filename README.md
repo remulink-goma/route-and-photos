@@ -80,7 +80,6 @@
 
 **Route and Photos** is a tiny web player that treats map data as a picture format: a route (a line) travels across it, and photos appear in order along the way.
 
-
 - It started as a way to show walks — a route on a map, with the photos taken on the way (`map/`).
 - The stage does not have to be a map. Any surface with order (coordinates) works: `timeline/` lays album covers along a year axis instead.
 - Preparing the data — converting a picture into map format, aligning the route and the coordinates, placing the photos — is meant to be done by the receiving side's AI.
