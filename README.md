@@ -138,3 +138,9 @@ The map version uses Leaflet (BSD 2-Clause); please keep its attribution.
 The play-count recording mechanism (loading hit.gif) that was present in earlier versions has been removed.
 
 
+
+## 運用の注意
+写真ファイルを同じ名前のまま差し替えると、見る側のブラウザにキャッシュが残り、古い写真が表示されることがあります。写真を差し替えるときはファイル名を変えるか、見る側で強制再読み込み（Ctrl+Shift+R）を行ってください。
+
+## Operational note
+If you replace a photo file while keeping the same file name, viewers' browsers may keep showing the old photo from their cache. When replacing photos, change the file names, or hard-reload the page (Ctrl+Shift+R) on the viewer side.
