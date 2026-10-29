@@ -108,10 +108,15 @@ function tick(now){
 playBtn.onclick = ()=>{
   if(playing){ stop(); return; }
   if(scrub.value>=1000) scrub.value=0;
-  fromFrac = scrub.value/1000; playStart = performance.now();
+  fromFrac = scrub.value/1000;
   playing = true; followOn = true; playBtn.textContent = '⏸ 一時停止';
-  const wp0 = posAt(scrub.value/1000); panBusy = true; map.flyTo([wp0[0], wp0[1]], dynZoom, {duration:.6}); map.once('moveend', ()=>{ panBusy = false; }); setTimeout(()=>{ panBusy = false; }, 750);
-  rafId = requestAnimationFrame(tick);
+  const wp0 = posAt(fromFrac);
+  let started = false;
+  const begin = ()=>{ panBusy = false; if(started || !playing) return; started = true; playStart = performance.now(); rafId = requestAnimationFrame(tick); };
+  panBusy = true;
+  map.flyTo([wp0[0], wp0[1]], dynZoom, {duration:.6});
+  map.once('moveend', begin);
+  setTimeout(begin, 800);
 };
 const card = document.createElement('div'); card.id='photoCard'; document.getElementById('map').appendChild(card);
 function hideCard(){ card.style.display='none'; card._pos=null; }
