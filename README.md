@@ -40,6 +40,28 @@
 自分のデータで作るよう指示してください。データの形式は実例の中のデータが
 そのまま見本になっています。
 
+最初に何と頼めばいいか分からない場合は、この依頼文をそのまま自分の AI に渡してください。このシステム自体も、同じ分担（設計と判断は人間、実装は AI）で作られました。
+
+```
+あなたは「ルートと写真」システムの実装担当です。設計と判断は私（人間）が行い、実装はあなたが担います。
+
+まず、このフォルダの README を読んでください。次にサンプル（map/ の地図ページ）を実際に動かし、再生ボタンを押したときに何が起きるかを確認してください。
+
+そのあと、私のデータでページを1つ作ってください。私が用意するもの：
+- ルートデータ（TCX または GPX ファイル）
+- 途中で撮った写真（数枚）
+
+作るときの決まり：
+1. 仕組み（プログラムとスタイル）はサンプルのものをそのままコピーし、データだけを差し替えること。直すのではなく、正の物をコピーするのが原則です。
+2. 写真の表示位置は、正確な撮影地点ではなく、歩いた距離の割合で均等に割り振ってよい。このシステムは計測ではなく、見て楽しむためのものです。正確さより、見た人が「変だ」と感じないことを優先してください。
+3. 動きのある表示（再生で地図が寄り、写真が順に出る）は、位置の近似を気にさせないためのものでもあります。削らないでください。
+4. 余計な機能を足さないこと。単純で、やさしくて、おもしろそう、が設計の基準です。
+5. できたページは、まず短いデータで試してから、本番のデータに進んでください。
+
+分からないことがあれば、推測で進めず、私に聞いてください。
+うまくいかないとき（サンプルが動かない、データの形が合わない等）は、独自に解決しようとせず、まず README の該当する節に戻って読み直してください。
+```
+
 - `map/`： 地図版。ルートデータと写真が HTML の中にデータとして入っています。
   - ルートは「累積距離つきの座標列」です。TCX に地点ごとの距離がなければ、
     座標から計算して作ってください。
@@ -110,6 +132,28 @@ Making-of story on the promo note (Japanese): [「ルートと写真」という
 ### How to use
 
 Hand this whole folder to your own AI (an agent that can work with code and files, such as Muse) together with your data, and ask it to build yours. The data inside the examples is the specification — there is no separate manual.
+
+If you are not sure what to ask first, hand this request text to your AI as-is. This system itself was built with the same division of labor — design and decisions by the human, implementation by the AI.
+
+```
+You are the implementer of the "Route and Photos" system. Design and decisions are mine (the human's); implementation is yours.
+
+First, read the README in this folder. Then run the sample (the map page in map/) and check what happens when the play button is pressed.
+
+After that, build one page with my data. I will provide:
+- a route file (TCX or GPX)
+- a few photos taken along the way
+
+Rules:
+1. Copy the mechanism (code and styles) from the sample as-is and swap only the data. Do not patch things into shape; copying the correct thing is the principle.
+2. Photo positions do not need to be exact shooting locations; spread them evenly by fraction of the total distance. This system is for looking at and enjoying, not for measuring. Prefer "nothing feels off" over precision.
+3. The moving display (the map zooms in during playback and photos appear in order) is also what keeps the approximate positions from being noticed. Do not remove it.
+4. Do not add extra features. The design standard is: simple, gentle, and looks fun.
+5. Test the finished page with a short set of data first, then move to the real data.
+
+If anything is unclear, ask me instead of guessing.
+If something does not work (the sample will not run, the data shape does not fit, and so on), do not improvise a fix — first go back and re-read the relevant section of the README.
+```
 
 - `map/`: the map version. The route and photos are embedded in the HTML as data.
   - The route is a sequence of coordinates with cumulative distances. If your TCX has no per-point distances, have them computed from the coordinates.
