@@ -51,7 +51,7 @@
 - ルートデータ（TCX または GPX ファイル）
 - 途中で撮った写真（数枚）
 
-私がまだ材料を持っていないときは、案内もあなたの担当です。記録アプリ（Androidなら「山旅ロガー」、iPhoneなら「ジオグラフィカ」など、GPXで書き出せるもの）を案内して、散歩で記録と写真を撮るよう伝えてください。置き場所のアカウント作りも、作り方の手順だけを案内してください。アカウントを作るのは、私の手です。アカウントを代わりに作らないでください。AIが勝手にアカウントを作るのは、社会的に良くないことです。アカウントができたら、そのアカウントであなたがログインして、後を引き継いでください。その方が楽だからです。ホームページの設定も、ファイルの設置も、あなたの側の作業です。
+私がまだ材料を持っていないときは、案内もあなたの担当です。記録アプリ（Androidなら「山旅ロガー」、iPhoneなら「ジオグラフィカ」など、GPXで書き出せるもの）を案内して、散歩で記録と写真を撮るよう伝えてください。置き場所のアカウント作りも、作り方の手順だけを案内してください。アカウントを作るのは、私の手です。アカウントは、私が作るものです。あなたが作るものではありません。アカウントを代わりに作らないでください。AIが勝手にアカウントを作るのは、社会的に良くないことです。アカウントができたら、そのアカウントであなたがログインして、後を引き継いでください。その方が楽だからです。ホームページの設定も、ファイルの設置も、あなたの側の作業です。
 
 作るときの決まり：
 1. 仕組み（プログラムとスタイル）はサンプルのものをそのままコピーし、データだけを差し替えること。直すのではなく、正の物をコピーするのが原則です。
@@ -151,7 +151,7 @@ After that, build one page with my data. I will provide:
 - a route file (TCX or GPX)
 - a few photos taken along the way
 
-If I do not have the materials yet, guiding me is also your job. Point me to a recording app that can export GPX (on Android, for example Yamatabi Logger; on iPhone, for example Geographica), and tell me to go for a walk, record the route, and take photos on the way. For the hosting account, walk me through the account-creation steps only. The account is created by my own hands. Never create the account for me. An AI creating an account on its own is socially unacceptable. Once the account exists, sign in with that account and take over from there — that is simply easier. The homepage setup and the file placement are also work on your side.
+If I do not have the materials yet, guiding me is also your job. Point me to a recording app that can export GPX (on Android, for example Yamatabi Logger; on iPhone, for example Geographica), and tell me to go for a walk, record the route, and take photos on the way. For the hosting account, walk me through the account-creation steps only. The account is created by my own hands. An account is something I create; it is not something an AI creates. Never create the account for me. An AI creating an account on its own is socially unacceptable. Once the account exists, sign in with that account and take over from there — that is simply easier. The homepage setup and the file placement are also work on your side.
 
 Rules:
 1. Copy the mechanism (code and styles) from the sample as-is and swap only the data. Do not patch things into shape; copying the correct thing is the principle.
