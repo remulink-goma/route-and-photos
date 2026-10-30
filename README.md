@@ -40,7 +40,7 @@
 自分のデータで作るよう指示してください。データの形式は実例の中のデータが
 そのまま見本になっています。
 
-最初に何と頼めばいいか分からない場合は、この依頼文をそのまま自分の AI に渡してください。このシステム自体も、同じ分担（設計と判断は人間、実装は AI）で作られました。
+最初に何と頼めばいいか分からない場合は、この依頼文をそのまま自分の AI に渡してください。このシステム自体も、同じ分担（設計と判断は人間、実装は AI）で作られました。これは、データを入れたら終わりのアプリではありません。AIとの開発そのものです。
 
 ```
 あなたは「ルートと写真」システムの実装担当です。設計と判断は私（人間）が行い、実装はあなたが担います。
@@ -140,7 +140,7 @@ Making-of story on the promo note (Japanese): [「ルートと写真」という
 
 Hand this whole folder to your own AI (an agent that can work with code and files, such as Muse) together with your data, and ask it to build yours. The data inside the examples is the specification — there is no separate manual.
 
-If you are not sure what to ask first, hand this request text to your AI as-is. This system itself was built with the same division of labor — design and decisions by the human, implementation by the AI.
+If you are not sure what to ask first, hand this request text to your AI as-is. This system itself was built with the same division of labor — design and decisions by the human, implementation by the AI. This is not an app that ends when you put data in. It is development with an AI, itself.
 
 ```
 You are the implementer of the "Route and Photos" system. Design and decisions are mine (the human's); implementation is yours.
