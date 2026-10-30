@@ -51,6 +51,8 @@
 - ルートデータ（TCX または GPX ファイル）
 - 途中で撮った写真（数枚）
 
+私がまだ材料を持っていないときは、案内もあなたの担当です。記録アプリ（Androidなら「山旅ロガー」など、GPXで書き出せるもの）を案内して、散歩で記録と写真を撮るよう伝えてください。置き場所のアカウント作りも、手順を案内してください。作るのは私の手です。代わりに作らないでください。
+
 作るときの決まり：
 1. 仕組み（プログラムとスタイル）はサンプルのものをそのままコピーし、データだけを差し替えること。直すのではなく、正の物をコピーするのが原則です。
 2. 写真の表示位置は、正確な撮影地点ではなく、歩いた距離の割合で均等に割り振ってよい。このシステムは計測ではなく、見て楽しむためのものです。正確さより、見た人が「変だ」と感じないことを優先してください。
@@ -148,6 +150,8 @@ First, read the README in this folder. Then run the sample (the map page in map/
 After that, build one page with my data. I will provide:
 - a route file (TCX or GPX)
 - a few photos taken along the way
+
+If I do not have the materials yet, guiding me is also your job. Point me to a recording app that can export GPX (on Android, for example Yamatabi Logger), and tell me to go for a walk, record the route, and take photos on the way. Also walk me through creating the hosting account, step by step. I create it with my own hands — do not create it for me.
 
 Rules:
 1. Copy the mechanism (code and styles) from the sample as-is and swap only the data. Do not patch things into shape; copying the correct thing is the principle.
