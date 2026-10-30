@@ -51,7 +51,7 @@
 - ルートデータ（TCX または GPX ファイル）
 - 途中で撮った写真（数枚）
 
-私がまだ材料を持っていないときは、案内もあなたの担当です。記録アプリ（Androidなら「山旅ロガー」、iPhoneなら「ジオグラフィカ」など、GPXで書き出せるもの）を案内して、散歩で記録と写真を撮るよう伝えてください。置き場所のアカウント作りも、作り方の手順だけを案内してください。作るのは私の手です。代わりに作らないでください。アカウントができたら、ページのファイルはあなたが用意してください。私がするのは、管理画面からその出来上がったファイルを置くところだけです。置き方も案内してください。
+私がまだ材料を持っていないときは、案内もあなたの担当です。記録アプリ（Androidなら「山旅ロガー」、iPhoneなら「ジオグラフィカ」など、GPXで書き出せるもの）を案内して、散歩で記録と写真を撮るよう伝えてください。置き場所のアカウント作りも、作り方の手順だけを案内してください。アカウントを作るのは、私の手です。アカウントを代わりに作らないでください。アカウントができたら、私の作業は終わりです。ページを作るのは、あなたの仕事です。
 
 作るときの決まり：
 1. 仕組み（プログラムとスタイル）はサンプルのものをそのままコピーし、データだけを差し替えること。直すのではなく、正の物をコピーするのが原則です。
@@ -151,7 +151,7 @@ After that, build one page with my data. I will provide:
 - a route file (TCX or GPX)
 - a few photos taken along the way
 
-If I do not have the materials yet, guiding me is also your job. Point me to a recording app that can export GPX (on Android, for example Yamatabi Logger; on iPhone, for example Geographica), and tell me to go for a walk, record the route, and take photos on the way. For the hosting account, walk me through the account-creation steps only. I create it with my own hands — do not create it for me. Once the account exists, prepare the page files yourself. My only part is placing those finished files from the admin screen — walk me through that as well.
+If I do not have the materials yet, guiding me is also your job. Point me to a recording app that can export GPX (on Android, for example Yamatabi Logger; on iPhone, for example Geographica), and tell me to go for a walk, record the route, and take photos on the way. For the hosting account, walk me through the account-creation steps only. The account is created by my own hands. Never create the account for me. Once the account exists, my work is done. Building the page is your job.
 
 Rules:
 1. Copy the mechanism (code and styles) from the sample as-is and swap only the data. Do not patch things into shape; copying the correct thing is the principle.
