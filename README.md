@@ -65,6 +65,11 @@
 - `map/`： 地図版。ルートデータと写真が HTML の中にデータとして入っています。
   - ルートは「累積距離つきの座標列」です。TCX に地点ごとの距離がなければ、
     座標から計算して作ってください。
+  - MapMyWalk の TCX は、位置と距離が別々のトラックポイントに交互に記録されています。
+    距離の列を時刻で補間して、位置の列に割り当ててください。座標だけから距離を
+    計算すると実際より長く出ます（実例では約14%増し）。サブタイトルの地域名と
+    写真の説明文は TCX には入っていません。地域名は作る人が決め、写真の説明文は
+    写真を見て付けるか、本人に確認してください。
   - 写真は `frac`（ルート全体に対する割合 0〜1）と、その位置のルート上の点の
     緯度経度 `pos` を持ちます。表示は `pos` の最寄りのルート点で起きます。
   - `frac` の付け方は、写真の順番に均等割りが標準です（2枚なら 1/3・2/3 付近）。
@@ -157,6 +162,7 @@ If something does not work (the sample will not run, the data shape does not fit
 
 - `map/`: the map version. The route and photos are embedded in the HTML as data.
   - The route is a sequence of coordinates with cumulative distances. If your TCX has no per-point distances, have them computed from the coordinates.
+  - In a MapMyWalk TCX, positions and distances are recorded in separate, alternating trackpoints. Interpolate the distance stream by time and assign it to the positions. Computing distance from coordinates alone overshoots (about +14% in our example). The place name in the subtitle and the photo captions are not in the TCX: the place name is the maker's call, and captions are written from looking at the photos, or confirmed with the owner.
   - Each photo carries `frac` (its position along the route, 0–1) and `pos` (the lat/lng of the route point at that fraction). Display triggers at the route point nearest to `pos`.
   - A good default for `frac` is an even split by photo order (for 2 photos, about 1/3 and 2/3). Atmosphere over precision.
 - `timeline/`: the timeline version. Data is `albums.json` (a list of year, title, image filename). Images go in `jackets/`, and list order is display order.
