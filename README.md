@@ -60,7 +60,6 @@
 4. 余計な機能を足さないこと。単純で、やさしくて、おもしろそう、が設計の基準です。
 5. できたページは、まず短いデータで試してから、本番のデータに進んでください。
 6. URLを伝えるときは、アドレスを文字で書くのではなく、押せるリンクとして出してください。「ブラウザで開いてみて」と本人に開かせる形にしないでください。
-7. 窓（iframe）のアドレスには版番号を付けてください（例： embed.html?v=1）。埋め込まれる側のファイルを差し替えたら、トップページ側の版番号も上げてください。ブラウザが古い窓を覚えていて、「差し替えたのに前のまま」に見える勘違いを防ぐためです。
 
 分からないことがあれば、推測で進めず、私に聞いてください。
 うまくいかないとき（サンプルが動かない、データの形が合わない等）は、独自に解決しようとせず、まず README の該当する節に戻って読み直してください。
@@ -162,7 +161,6 @@ Rules:
 4. Do not add extra features. The design standard is: simple, gentle, and looks fun.
 5. Test the finished page with a short set of data first, then move to the real data.
 6. When giving a URL, present it as a tappable link, not as an address written out in text. Do not make the person open it in a browser themselves.
-7. Put a version number on each embedded window's address (e.g. embed.html?v=1). When you replace the embedded file, raise the version number in the top page as well. Browsers remember the old window, and without this the page can look unchanged after a replacement, which makes people think it did not happen.
 
 If anything is unclear, ask me instead of guessing.
 If something does not work (the sample will not run, the data shape does not fit, and so on), do not improvise a fix — first go back and re-read the relevant section of the README.
