@@ -11,7 +11,7 @@ h1{font-size:20px;margin:0 0 4px}
 .sub{font-size:13px;color:#666}
 #map{flex:1 1 auto;min-height:150px;margin:10px 0 0}
 .bar{display:flex;align-items:center;gap:10px;padding:10px 16px;flex-wrap:wrap}
-#play{flex:1 1 100%;height:58px;border:none;border-radius:29px;background:#e4572e;color:#fff;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.25);-webkit-tap-highlight-color:transparent;font-family:inherit}
+#play{flex:1 1 100%;height:58px;border:none;border-radius:29px;background:#e4572e;color:#fff;font-size:19px;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.25);-webkit-tap-highlight-color:transparent;font-family:inherit}
 #scrub{flex:1;height:36px;accent-color:#e4572e;cursor:pointer}
 #readout{font-size:14px;min-width:170px}
 .note{padding:6px 16px 12px;font-size:11px;line-height:1.6;color:#555}
@@ -37,8 +37,22 @@ L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png',{attribut
 const latlngs = D.route.map(p=>[p[0],p[1]]);
 L.polyline(latlngs,{color:'#ffffff',weight:10,opacity:.95}).addTo(map);
 const line = L.polyline(latlngs,{color:'#e4572e',weight:5,opacity:1}).addTo(map);
-map.fitBounds(line.getBounds().pad(0.08));
-const dynZoom = Math.min(16, map.getZoom()+2);
+let dynZoom = 16;
+let interacted = false;
+function fitInitial(){
+  if(interacted) return;
+  map.invalidateSize();
+  map.fitBounds(line.getBounds().pad(0.08));
+  dynZoom = Math.min(16, map.getZoom()+2);
+}
+fitInitial();
+if('IntersectionObserver' in window){
+  const ioFit = new IntersectionObserver(es=>{
+    for(const e of es){ if(e.isIntersecting) fitInitial(); }
+  }, {threshold: 0.2});
+  ioFit.observe(document.getElementById('map'));
+}
+window.addEventListener('load', ()=>{ setTimeout(fitInitial, 250); });
 const walker = L.circleMarker([D.route[0][0],D.route[0][1]],{radius:9,color:'#fff',weight:3,fillColor:'#e4572e',fillOpacity:1}).addTo(map);
 let followOn = false, panBusy = false, lastFollow = 0;
 function followWalker(ll){
@@ -72,7 +86,7 @@ function followWalker(ll){
   map.once('moveend', ()=>{ panBusy = false; });
   setTimeout(()=>{ panBusy = false; }, 500);
 }
-window.addEventListener('resize', ()=>{ setTimeout(()=>{ map.invalidateSize(); }, 200); });
+window.addEventListener('resize', ()=>{ setTimeout(()=>{ if(interacted){ map.invalidateSize(); } else { fitInitial(); } }, 200); });
 function jst(iso){const d=new Date(iso);return d.toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Tokyo'});}
 function posAt(frac){
   const target = D.total_m*frac; const R=D.route;
@@ -81,7 +95,7 @@ function posAt(frac){
 }
 const scrub=document.getElementById('scrub'), readout=document.getElementById('readout');
 function update(){ const f=scrub.value/1000; const p=posAt(f); walker.setLatLng([p[0],p[1]]); followWalker([p[0],p[1]]); readout.textContent=(D.total_m*f/1000).toFixed(1)+' km ・ '+jst(p[2]); }
-scrub.addEventListener('input',()=>{ stop(); lastShown=-1; hideCard(); followOn=true; update(); }); update();
+scrub.addEventListener('input',()=>{ interacted = true; stop(); lastShown=-1; hideCard(); followOn=true; update(); }); update();
 const photoFracs = D.photos.map(ph=>{
   let best=0, bd=1e18;
   D.route.forEach((p,i)=>{ const d=(p[0]-ph.pos[0])**2+(p[1]-ph.pos[1])**2; if(d<bd){bd=d;best=i;} });
@@ -94,18 +108,24 @@ function syncHero(){
   photoFracs.forEach((pf,i)=>{ if(f>=pf) cur=i; });
   if(cur>=0 && cur!==lastShown){ lastShown=cur; if(markers[cur]) markers[cur].show(); }
 }
-let playing=false, rafId=null, playStart=0, fromFrac=0;
+let playing=false, rafId=null, playStart=0, fromFrac=0, playElapsed=0, lastTickT=0;
 const DURATION = 10000;
 const playBtn = document.getElementById('play');
-function stop(){ playing=false; if(rafId) cancelAnimationFrame(rafId); rafId=null; playBtn.textContent='▶ 散歩を再生（10秒）'; }
+function stop(){ playing=false; playElapsed=0; lastTickT=0; if(rafId) cancelAnimationFrame(rafId); rafId=null; playBtn.textContent='▶ 散歩を再生（10秒）'; }
 function tick(now){
   if(!playing) return;
-  const f = fromFrac + (now-playStart)/DURATION;
-  if(f>=1){ scrub.value=1000; update(); syncHero(); stop(); return; }
-  scrub.value = Math.round(f*1000); update(); syncHero();
   rafId = requestAnimationFrame(tick);
+  try{
+    if(!lastTickT) lastTickT = now;
+    playElapsed += Math.min(now - lastTickT, 100);
+    lastTickT = now;
+    const f = fromFrac + playElapsed/DURATION;
+    if(f>=1){ scrub.value=1000; update(); syncHero(); stop(); return; }
+    scrub.value = Math.round(f*1000); update(); syncHero();
+  }catch(e){ /* skip this frame, keep playing */ }
 }
 playBtn.onclick = ()=>{
+  interacted = true;
   if(playing){ stop(); return; }
   if(scrub.value>=1000) scrub.value=0;
   fromFrac = scrub.value/1000;
