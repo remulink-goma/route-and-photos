@@ -184,6 +184,26 @@ your own sense of how it should look. This page, and the system itself,
 were made in exactly that division of labour. Whether the attempt reaches
 people is now up to the people who use it.
 
+## Two kinds of users
+
+There are, broadly, two kinds of people who use this set.
+
+One kind is happy with the sample as it is. Walk pages are mostly this
+kind: follow the steps, put in your own record and photos, and a page of
+the same shape comes out. Having few places to hesitate is the goodness
+of this form.
+
+The other kind starts out intending to change things their own way. The
+musician's "All Albums," "Album Sampler," and "Album Timeline" are this
+kind: it begins from deciding how to present your own catalog of songs.
+The sample is handed over not as a finished form, but as a starting
+point.
+
+Neither is above the other. The fork at the entrance — make it like the
+sample, or change it your own way — is exactly these two kinds. The
+human decides, the AI builds: that division is the same for both kinds
+of people.
+
 ### How to use
 
 Hand this whole folder to your own AI (an agent that can work with code and files, such as Muse) together with your data, and ask it to build yours. The data inside the examples is the specification — there is no separate manual.
