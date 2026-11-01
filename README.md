@@ -34,6 +34,37 @@
 紹介記事: [Qiita](https://qiita.com/remulink-goma/items/fcf1c94343aa78b56c22) ／ [Zenn](https://zenn.dev/remulink_goma/articles/8bc34230a31d59)
 作った側の体験談（宣伝ノート）: [「ルートと写真」という仕組みを作りました](https://note.com/remulink_goma/n/n2d51f09fe441)
 
+## このプロジェクトについて
+
+「ルートと写真」は、散歩のページを作る仕組みであると同時に、
+開発そのものを一般の人に開く試みです。
+
+ふつう、プログラムを作れるのは、勉強して技術を身につけた人だけでした。
+ここでは違います。設計と判断は人間が担い、実装はその人自身の AI が担う。
+渡すのは完成したアプリではなく、自分の AI に渡せば同じものが作れる一式です。
+
+必要なのは、スマートフォンと、自分で撮った散歩の記録と写真、
+そして「こうしたい」という感覚だけです。
+このページも、この仕組み自体も、その分担で作られました。
+試みが届くかどうかは、これから使う人たちが決めます。
+
+## 使う人は、二種類います
+
+この一式を使う人は、大きく二種類います。
+
+ひとつは、見本と同じでいい人です。散歩のページはこの形が中心で、
+手順に沿って自分の記録と写真を入れれば、同じ形のページができます。
+迷う所が少ないのが、この形の良さです。
+
+もうひとつは、最初から自分なりに変える前提の人です。
+音楽家の「全アルバム紹介」「アルバムお試し」「アルバム年表」はこちらで、
+自分の曲のカタログをどう見せるか、決める所から始まります。
+見本は完成形ではなく、出発点として渡されます。
+
+どちらが上という話ではありません。入口の分かれ道
+（見本のまま作るか、自分なりに変えるか）が、そのままこの二種類です。
+決めるのは自分、作るのはAI——その分担は、どちらの人でも同じです。
+
 ## 使い方
 
 このフォルダごと、自分の AI（Muse など、コードを扱えるエージェント）に渡して、
@@ -136,6 +167,22 @@ In production at: [https://remu.jp/](https://remu.jp/) (windows on the top page,
 ![A walk (Route and Photos system)](images/map.jpg)
 Introductory articles (Japanese): [Qiita](https://qiita.com/remulink-goma/items/fcf1c94343aa78b56c22) / [Zenn](https://zenn.dev/remulink_goma/articles/8bc34230a31d59)
 Making-of story on the promo note (Japanese): [「ルートと写真」という仕組みを作りました](https://note.com/remulink_goma/n/n2d51f09fe441)
+
+## About this project
+
+**Route and Photos** is a way to build a page for a walk — and, at the same
+time, an attempt to open development itself to everyone.
+
+Programming used to belong only to people who studied and acquired the
+skill. Here it works differently: the human does the design and the
+judging, and that person's own AI does the implementation. What is handed
+over is not a finished app, but a complete set that your own AI can turn
+into the same thing.
+
+All you need is a smartphone, the record and photos of your own walk, and
+your own sense of how it should look. This page, and the system itself,
+were made in exactly that division of labour. Whether the attempt reaches
+people is now up to the people who use it.
 
 ### How to use
 
