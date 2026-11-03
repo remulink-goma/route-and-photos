@@ -109,9 +109,11 @@ function syncHero(){
   if(cur>=0 && cur!==lastShown){ lastShown=cur; if(markers[cur]) markers[cur].show(); }
 }
 let playing=false, rafId=null, playStart=0, fromFrac=0, playElapsed=0, lastTickT=0;
-const DURATION = 10000;
+const DURATION = Math.max(10000, ((D.photos||[]).length)*1000);
 const playBtn = document.getElementById('play');
-function stop(){ playing=false; playElapsed=0; lastTickT=0; if(rafId) cancelAnimationFrame(rafId); rafId=null; playBtn.textContent='▶ 散歩を再生（10秒）'; }
+const PLAY_LABEL = '▶ 散歩を再生（' + (DURATION/1000) + '秒）';
+playBtn.textContent = PLAY_LABEL;
+function stop(){ playing=false; playElapsed=0; lastTickT=0; if(rafId) cancelAnimationFrame(rafId); rafId=null; playBtn.textContent=PLAY_LABEL; }
 function tick(now){
   if(!playing) return;
   rafId = requestAnimationFrame(tick);
