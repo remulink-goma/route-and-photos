@@ -97,6 +97,7 @@ const scrub=document.getElementById('scrub'), readout=document.getElementById('r
 function update(){ const f=scrub.value/1000; const p=posAt(f); walker.setLatLng([p[0],p[1]]); followWalker([p[0],p[1]]); readout.textContent=(D.total_m*f/1000).toFixed(1)+' km ・ '+jst(p[2]); }
 scrub.addEventListener('input',()=>{ interacted = true; stop(); lastShown=-1; hideCard(); followOn=true; update(); }); update();
 const photoFracs = D.photos.map(ph=>{
+  if(typeof ph.frac === 'number') return ph.frac;
   let best=0, bd=1e18;
   D.route.forEach((p,i)=>{ const d=(p[0]-ph.pos[0])**2+(p[1]-ph.pos[1])**2; if(d<bd){bd=d;best=i;} });
   return D.route[best][2]/D.total_m;
