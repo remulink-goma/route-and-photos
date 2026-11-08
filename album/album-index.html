@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>アルバムお試し『良き日々を』｜レムリンク</title><style>
+body{font-family:sans-serif;margin:0 auto;padding:10px;color:#222;background:#fff;max-width:680px;overflow-x:hidden}
+h1{font-size:20px;margin:4px 0 2px}
+.note{font-size:13px;color:#555;margin:2px 0 8px}
+#stage{position:relative;left:50%;transform:translateX(-50%);width:100vw;background:#faf7f2 url(jacket.jpg) center/cover no-repeat;border-top:1px solid #e3ddd2;border-bottom:1px solid #e3ddd2;overflow:hidden;touch-action:pan-y;cursor:grab}
+#stageTitle{position:absolute;top:10px;left:50%;transform:translateX(-50%);background:rgba(20,16,8,.55);color:#fff;text-align:center;padding:5px 16px 6px;border-radius:12px;pointer-events:none;z-index:5;line-height:1.35;white-space:nowrap}
+#stageTitle .alb{font-size:15px;font-weight:700}
+#stageTitle .sys{display:block;font-size:11px;opacity:.85;letter-spacing:.08em}
+#bgov{position:absolute;inset:0;background:transparent}
+#bigNo{text-shadow:0 0 6px #fff,0 0 6px #fff,0 0 6px #fff}
+#card .cap{text-shadow:0 0 5px #fff,0 0 5px #fff,0 0 5px #fff}
+#bigNo{position:absolute;top:8px;left:12px;font-size:26px;font-weight:bold;color:#e4572e;opacity:.9}
+#card{position:absolute;width:232px;margin-left:-116px;text-align:center;transition:opacity .15s;cursor:pointer}
+#thumbWrap{position:relative;width:224px;height:126px;margin:0 auto;border-radius:6px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.25);background:#000}
+#thumbWrap img{width:100%;height:100%;object-fit:cover;display:block}
+
+#thumbWrap .badge{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:rgba(228,87,46,.92);color:#fff;font-size:20px;line-height:48px;text-align:center;box-shadow:0 1px 6px rgba(0,0,0,.35)}
+#card .cap{margin-top:6px;font-size:13px;line-height:1.35}
+#axis{position:absolute;left:14px;right:14px;height:2px;background:#c9c2b4}
+.stop{position:absolute;width:10px;height:10px;margin-left:-7px;border-radius:50%;background:#5f5138;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.6);cursor:pointer}
+.stop.on{background:#e4572e}
+#ptr{position:absolute;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:#e4572e;border:2px solid #fff;box-shadow:0 0 0 2px #e4572e}
+#guide{position:absolute;width:2px;margin-left:-1px;background:rgba(228,87,46,.35)}
+#vwrap{position:fixed;inset:0;height:100vh;height:100dvh;background:rgba(0,0,0,.95);display:none;align-items:center;justify-content:center;z-index:3000;padding:14px;box-sizing:border-box}
+#vbox{width:min(920px,100%);aspect-ratio:16/9;background:#000}
+#vbox iframe{width:100%;height:100%;display:block}
+#playBtn{display:block;width:100%;margin-top:10px;padding:16px 0;font-size:19px;font-weight:bold;color:#fff;background:#e4572e;border:none;border-radius:8px;cursor:pointer}
+#stage{height:352px}</style>
+<style>
+/* PC wide layout: staged scaling by window width */
+@media (min-width:700px){
+  body{max-width:900px}
+  h1{font-size:22px}
+  #stage{height:460px}
+  #card{width:340px;margin-left:-170px}
+  #thumbWrap{width:332px;height:187px}
+  #card .cap{font-size:15px}
+  #bigNo{font-size:34px}
+  #stageTitle .alb{font-size:17px}
+}
+@media (min-width:1100px){
+  #vbox{width:min(1500px,100%,168vh)}
+  body{max-width:1180px}
+  h1{font-size:24px}
+  #stage{height:560px}
+  #card{width:440px;margin-left:-220px}
+  #thumbWrap{width:432px;height:243px}
+  #card .cap{font-size:16px}
+  #bigNo{font-size:42px}
+  #stageTitle .alb{font-size:19px}
+  #playBtn{font-size:21px;padding:18px 0}
+}
+@media (min-width:1500px){
+  #vbox{width:min(1680px,100%,168vh)}
+  body{max-width:1440px}
+  h1{font-size:26px}
+  #stage{height:660px}
+  #card{width:540px;margin-left:-270px}
+  #thumbWrap{width:532px;height:299px}
+  #bigNo{font-size:50px}
+  #stageTitle .alb{font-size:21px}
+}
+@media (min-width:1900px){
+  #stage{height:760px}
+  #card{width:620px;margin-left:-310px}
+  #thumbWrap{width:612px;height:344px}
+  #bigNo{font-size:56px}
+}
+</style>
+</head>
+<body>
+<h1>アルバムお試し（ルートと写真システム）</h1><p class="note">レムリンク『良き日々を』（2022）全15曲。曲順にサムネイルが流れます。</p>
+<div id="stage">
+<div id="stageTitle"><span class="alb">レムリンク『良き日々を』（2022）</span><span class="sys">ルートと写真システム</span></div>
+  <div id="bgov"></div>
+  <div id="bigNo"></div>
+  <div id="card"><div id="thumbWrap"><img id="cimg" alt=""><span class="badge">▶</span></div><div class="cap" id="ccap"></div></div>
+  <div id="guide"></div><div id="axis"></div><div id="ptr"></div>
+</div>
+<button id="playBtn">▶ アルバムを再生（約60秒・音が出ます）</button>
+<p class="note">サムネイルをタッチすると、その曲の動画が15秒再生されます。「ルートと写真」システムは<a href="https://github.com/remulink-goma/route-and-photos" target="_top">GitHubで配布中です</a>。作り方は、ガイドページ<a href="https://remulinkgoma.web.fc2.com/" target="_top">「自分の散歩を、作ってみよう」</a>にあります。</p>
+<audio id="bgm" src="bg4.mp3" preload="auto"></audio>
+<div id="vwrap"><div id="vbox"></div></div>
+<script>
+const T = [{"n": 1, "t": "祈れ", "v": "0Od69mParek", "s": 22.3}, {"n": 2, "t": "暗闇の中の猫", "v": "D0cf5rZc528", "s": 18.3}, {"n": 3, "t": "間奏曲８７", "v": "65Y0UWWkM5M", "s": 4}, {"n": 4, "t": "ようこそ迷いの森へ", "v": "VdEGsHWr2xM", "s": 13.1}, {"n": 5, "t": "間奏曲８３", "v": "AJpkM_wqIO8", "s": 0}, {"n": 6, "t": "ポケットにあるから", "v": "xP-uU0VKt2o", "s": 15.5}, {"n": 7, "t": "良き日々を", "v": "nEDmTxjDJJ8", "s": 8.5}, {"n": 8, "t": "間奏曲８５", "v": "7SFHcL4az-Q", "s": 4}, {"n": 9, "t": "魚が吠える", "v": "vtjWZJV6nQ0", "s": 26}, {"n": 10, "t": "間奏曲８６", "v": "gruX__nbhBQ", "s": 1}, {"n": 11, "t": "流れる雲を眺めて", "v": "rlM2os8b-jw", "s": 15.2}, {"n": 12, "t": "JR須磨駅", "v": "IKQkSuNSnv8", "s": 9.0}, {"n": 13, "t": "ラーメンうまい", "v": "PQJOJtwM-TQ", "s": 12.8}, {"n": 14, "t": "歌を胸に", "v": "-F0waIQlafU", "s": 20.9}, {"n": 15, "t": "パワーなく眠ろう", "v": "l_Rb4pQTHA8", "s": 14.6}];
+const SEG = 15;
+const stage = document.getElementById('stage'), card = document.getElementById('card'),
+      cimg = document.getElementById('cimg'), ccap = document.getElementById('ccap'),
+      ptr = document.getElementById('ptr'), guide = document.getElementById('guide'),
+      axis = document.getElementById('axis'), bigNo = document.getElementById('bigNo'),
+      btn = document.getElementById('playBtn'),
+      vwrap = document.getElementById('vwrap'), vbox = document.getElementById('vbox');
+T.forEach(tk=>{ const i=new Image(); i.src='https://i.ytimg.com/vi/'+tk.v+'/hqdefault.jpg'; });
+const TRAVEL = 60000;
+const bgm = document.getElementById('bgm');
+let W = 0, stops = [], cur = 0;
+function axisBottom(){ return 44; }
+function layout(){
+  W = stage.clientWidth;
+  const pad = 24, x0 = pad, x1 = W - pad;
+  axis.style.left = x0+'px'; axis.style.right = (W-x1)+'px'; axis.style.bottom = axisBottom()+'px';
+  document.querySelectorAll('.stop').forEach(e=>e.remove());
+  for(let i=0;i<=T.length;i++){
+    const d = document.createElement('div'); d.className='stop';
+    d.style.left = (x0 + (i/T.length)*(x1-x0))+'px'; d.style.bottom = (axisBottom()-4)+'px';
+    d.onclick = (ev)=>{ ev.stopPropagation(); if(playing) stopPlay(false);
+      if(i<T.length){ jumpTo(i); } else { pos = TRAVEL; move(posX()); show(T.length-1); setDot(T.length); } };
+    stage.appendChild(d);
+  }
+  move(posX()); show(cur);
+}
+function move(x){
+  ptr.style.left = x+'px'; ptr.style.bottom = (axisBottom()-6)+'px';
+  guide.style.left = x+'px'; guide.style.bottom = (axisBottom()+8)+'px';
+  guide.style.height = (stage.clientHeight-axisBottom()-60)+'px';
+  card.style.left = Math.max(card.offsetWidth/2 + 4, Math.min(W - card.offsetWidth/2 - 4, x))+'px';
+  card.style.bottom = (axisBottom()+26)+'px';
+}
+function show(i){
+  cur = i; const tk = T[i];
+  cimg.src = 'https://i.ytimg.com/vi/'+tk.v+'/hqdefault.jpg';
+  ccap.innerHTML = '<b>'+tk.n+'. '+tk.t+'</b>';
+  bigNo.textContent = tk.n+'曲目';
+  document.querySelectorAll('.stop').forEach((e,j)=>e.classList.toggle('on', j===i));
+function setDot(k){ document.querySelectorAll('.stop').forEach((e,j)=>e.classList.toggle('on', j===k)); }
+}
+function posX(){ return 24 + (pos/TRAVEL)*(W-48); }
+function jumpTo(i){ pos = (i/T.length)*TRAVEL; move(posX()); show(i); }
+let playing=false, raf=null, lastTs=0, pos=0;
+function frame(ts){
+  if(!playing) return;
+  if(!lastTs) lastTs = ts;
+  const dt = ts - lastTs; lastTs = ts;
+  pos += dt;
+  const frac = Math.min(pos/TRAVEL, 1);
+  move(24 + frac*(W-48));
+  const idx = Math.min(T.length-1, Math.floor(frac*T.length));
+  if(idx !== cur){ card.style.opacity = 0; setTimeout(()=>{ show(idx); card.style.opacity = 1; }, 130); }
+  if(pos >= TRAVEL){ show(T.length-1); setDot(T.length); stopPlay(true); return; }
+  raf = requestAnimationFrame(frame);
+}
+function stopPlay(done){
+  playing = false; if(raf) cancelAnimationFrame(raf); raf=null; lastTs=0;
+  try{ bgm.pause(); }catch(e){}
+  btn.textContent = done ? '▶ もう一度再生' : '▶ アルバムを再生（約60秒・音が出ます）';
+}
+btn.onclick = ()=>{
+  if(playing){ stopPlay(false); return; }
+  if(pos >= TRAVEL){ pos = 0; move(posX()); show(0); }
+  playing = true; btn.textContent = '⏸ 一時停止'; lastTs = 0;
+  try{ bgm.volume = 1.0; bgm.currentTime = pos/1000; bgm.play(); }catch(e){}
+  raf = requestAnimationFrame(frame);
+};
+/* --- video overlay: no controls, plays the chorus segment, returns by itself --- */
+let ytReady=false, player=null, closeTimer=null;
+const tag = document.createElement('script'); tag.src='https://www.youtube.com/iframe_api';
+document.head.appendChild(tag);
+window.onYouTubeIframeAPIReady = ()=>{ ytReady = true; };
+function openVideo(){
+  if(playing) stopPlay(false);
+  const tk = T[cur];
+  vwrap.style.display = 'flex';
+  clearTimeout(closeTimer);
+  closeTimer = setTimeout(closeVideo, (SEG+4)*1000);
+  const holder = document.createElement('div'); holder.id='vframe';
+  vbox.innerHTML=''; vbox.appendChild(holder);
+  if(ytReady && window.YT && YT.Player){
+    player = new YT.Player('vframe', {
+      videoId: tk.v,
+      playerVars: { autoplay:1, controls:0, rel:0, modestbranding:1, playsinline:1,
+                    start: tk.s, end: tk.s+SEG, disablekb:1 },
+      events: { onStateChange: (e)=>{ if(e.data === YT.PlayerState.ENDED) closeVideo(); },
+                onError: ()=>{ closeVideo(); } }
+    });
+  } else {
+    holder.outerHTML = '<iframe id="vframe" src="https://www.youtube.com/embed/'+tk.v+
+      '?autoplay=1&controls=0&rel=0&modestbranding=1&playsinline=1&start='+tk.s+'&end='+(tk.s+SEG)+
+      '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+    player = null;
+  }
+}
+function closeVideo(){
+  clearTimeout(closeTimer);
+  if(player && player.stopVideo){ try{ player.stopVideo(); player.destroy(); }catch(e){} }
+  player = null; vbox.innerHTML=''; vwrap.style.display='none';
+}
+/* --- drag the pointer: scrub across the stage to choose a track --- */
+let scrubbing = false;
+function scrubTo(clientX){
+  const r = stage.getBoundingClientRect();
+  const x = Math.max(24, Math.min(W-24, clientX - r.left));
+  const frac = (x-24)/(W-48);
+  const idx = Math.min(T.length-1, Math.max(0, Math.floor(frac*T.length)));
+  pos = frac*TRAVEL;
+  move(x); show(idx);
+}
+stage.addEventListener('pointerdown', (e)=>{
+  if(e.target.closest('#card') || e.target.classList.contains('stop')) return;
+  if(playing) stopPlay(false);
+  scrubbing = true;
+  try{ stage.setPointerCapture(e.pointerId); }catch(err){}
+  scrubTo(e.clientX);
+});
+stage.addEventListener('pointermove', (e)=>{ if(scrubbing) scrubTo(e.clientX); });
+stage.addEventListener('pointerup', ()=>{ scrubbing = false; });
+stage.addEventListener('pointercancel', ()=>{ scrubbing = false; });
+card.addEventListener('click', openVideo);
+vwrap.addEventListener('click', (e)=>{ if(e.target === vwrap) closeVideo(); });
+document.addEventListener('visibilitychange', ()=>{ if(document.hidden){ if(playing) stopPlay(false); if(vwrap.style.display !== 'none') closeVideo(); } });
+window.addEventListener('pagehide', ()=>{ if(playing) stopPlay(false); if(vwrap.style.display !== 'none') closeVideo(); });
+window.addEventListener('resize', layout);
+layout();
+</script>
+</body></html>
